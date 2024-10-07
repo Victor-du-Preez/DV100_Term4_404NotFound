@@ -228,4 +228,7 @@ a {
     font-weight: bold;
   }
 
-
+.footerCol{
+    display: flex;
+    flex-direction: row;
+}
