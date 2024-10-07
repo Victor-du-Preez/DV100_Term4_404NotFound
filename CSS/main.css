@@ -1,0 +1,231 @@
+
+.SuForm{
+    margin: 0 auto;
+    max-width: 587.52px;
+    color: #1c1c1c;
+}
+
+.SuForm-control{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #F1C3F2;
+    height: 66px;
+    width: 587.52px;
+    border-radius: 16px;
+
+}
+
+.form-control{
+    background-color: #F1C3F2;
+    height: 66px;
+    width: 513.22px;
+    border: none;
+}
+
+.formIcon{
+    height: 38px;
+    width: 38px;
+    background-color: #F1C3F2;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.form-text{
+    color: orangered;
+    font-size: 9px;
+}
+
+.SuButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.btn{
+    height: 55px;
+    width: 130px;
+    color: #1c1c1c;
+}
+
+.SuHr {
+    border: none;
+    height: 2px;
+    background-color: #a4a4a4;
+    margin: 40px 40px 35px 40px;
+}
+
+.LiForm{
+    margin: 0 auto;
+    max-width: 587.52px;
+    color: #1c1c1c;
+}
+
+.LiForm-control{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #F1C3F2;
+    height: 66px;
+    width: 587.52px;
+    border-radius: 16px;
+
+}
+
+.form-control{
+    background-color: #F1C3F2;
+    height: 66px;
+    width: 513.22px;
+    border: none;
+}
+
+.formIcon{
+    height: 38px;
+    width: 38px;
+    background-color: #F1C3F2;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.form-text{
+    color: orangered;
+    font-size: 9px;
+}
+
+.LiButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.btn{
+    height: 55px;
+    width: 130px;
+    color: #1c1c1c;
+}
+
+.heroCardBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.heroCard {
+    width: 997px;
+    height: 561px;
+    background-color: #EFC4F2;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+}
+
+.heroCardbody {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 40px;
+    padding-left: 40px;
+    background: linear-gradient(to top, #000000, #19172500);
+    border-radius: 20px;
+}
+
+.smallCard{
+    height: 209px;
+    width: 345px;
+    background-image: url("");
+    background-color: #EFC4F2;
+    border-radius: 20px;
+}
+
+.smlLikeBtn{
+    float: right;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-inner {
+    display: flex;
+    padding: 36px 24px 36px 24px;
+    }
+
+.carousel-item > .col-md-3 {
+    flex: 1 0 25%; /* Ensures 4 items per slide */
+}
+
+@media (max-width: 768px) {
+    .carousel-item > .col-md-3 {
+        flex: 1 0 50%; /* 2 items per slide on smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-item > .col-md-3 {
+        flex: 1 0 100%; /* 1 item per slide on extra small screens */
+    }
+}
+.searchBar{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    padding: 36px 24px 36px 24px;
+}
+
+.navFlex{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 1342px;
+}
+
+.navImg{
+ width: 134px;
+ height: 34px;
+}
+
+.leftNavBar{
+    display: flex;
+    flex-direction: row;
+    color: white;
+    font-size: 24px;
+}
+
+.rightNavBar{
+    display: flex;
+    flex-direction: row;
+    color: white;
+    font-size: 24px;
+}
+
+.searchBorder{
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    background-color: #EFC4F2;
+    Height: 36px;
+    width: 300px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 14px;
+
+}
+
+a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    padding-right: 36px;
+    padding-left: 36px;
+  }
+
+#active {
+    color: #ffffff;
+    font-weight: bold;
+  }
+
+
