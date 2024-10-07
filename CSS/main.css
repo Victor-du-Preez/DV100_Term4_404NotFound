@@ -232,3 +232,15 @@ a {
     display: flex;
     flex-direction: row;
 }
+
+.socials{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
+}
+
+.socialImg{
+    height: 52px;
+    width: 52px;
+}
