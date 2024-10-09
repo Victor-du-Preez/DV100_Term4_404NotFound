@@ -35,66 +35,37 @@
               </button></div>
             <div class="rightNavBar">
               <div class="item" ><a href="">Settings</a></div>
-              <div class="item"><a href="../DV100_Term4_404NotFound/Pages/login.html">Log In</a></div>
-              <div class="item"><a href="../DV100_Term4_404NotFound/Pages/signup.html" id="active">Sign In</a></div>
+              <div class="item"><a href="../Pages/login.html">Log In</a></div>
+              <div class="item"><a href="../Pages/signup.html" id="active">Sign Up</a></div>
               </div>
           </div>
       </header>
     </header>
-    
-    <div class="p-5 SignUp">
-        <div class="container text-center">
-            <p1 class="text-center fs-1 fw-bold" style="color: #ffffff;">SIGN UP</p1>
-        </div>
-          <form class="SuForm">
 
-            <hr class="SuHr">
-            
-            <div class="mb-3">
-              <label for="SuEmail" class="form-label" style="color: #8b8b8b; font-size: 10pt;" >Email address</label>
-              <div class="SuForm-control">
-                <img class="formIcon" src="../Assets/Icons/user.png">
-                <input type="email" class="form-control" placeholder="Email address" id="SuEmail" aria-describedby="emailHelp">
-              </div>
-              <div id="SuEmailHelp" class="form-text">*Invalid Email address</div>
-            </div>
-            <div class="mb-3">
-              <label for="SuUsername" class="form-label" style="color: #8b8b8b; font-size: 10pt;">Username</label>
-              <div class="SuForm-control">
-                <img class="formIcon" src="../Assets/Icons/user.png">
-              <input type="text" class="form-control" placeholder="Username" id="SuUsername">
-              </div>
-              <div id="usernameHelp" class="form-text">*Invalid Email address</div>
-            </div>
-            <div class="mb-3">
-              <label for="SuPassword" class="form-label" style="color: #8b8b8b; font-size: 10pt;">Password</label>
-              <div class="SuForm-control">
-                <img class="formIcon" src="../Assets/Icons/lock.png">
-              <input type="password" class="form-control"  placeholder="Password" id="SuPassword">
-              </div>
-              <div id="SuPasswordHelp" class="form-text">*Password needs to contain special characters</div>
-            </div>
-            <div class="mb-3">
-              <label for="SuCnfrmPasswordSU" class="form-label" style="color: #8b8b8b; font-size: 10pt;">Confirm Password</label>
-              <div class="SuForm-control">
-                <img class="formIcon" src="../Assets/Icons/lock.png">
-              <input type="password" class="form-control" placeholder="Confirm Password" id="SuCnfrmPasswordSU">
-              </div>
-              <div id="SuCnfrmPasswordHelp" class="form-text">*Passwords do not match</div>
-            </div>
+    <!-- JQuery login/signup -->
+    <div class="login-page">
+      <div class="form">
+        <form class="register-form">
+          <h1>Sign Up</h1>
+          <input id="create-email" type="text" placeholder="email address"/>
+          <input id="create-username" type="text" placeholder="username"/>
+          <input type="password" id="create-password" type="text" placeholder="password"/>
+          <button name="create-button" type="button" id="create-button">create</button>
+          <p class="message">Already registered? <a href="#">Sign In</a></p>
+        </form>
+        <form class="login-form">
+          <h1>Sign In</h1>
+          <input id="login-username" type="text" placeholder="username" name="login-username"/>
+          <input id="login-password" type="text" placeholder="password" name="login-password"/>
+          <button name="login-button" type="button" id="login-button">login</button>
+          <p class="message">Not registered? <a href="#">Create an account</a></p>
+        </form>
+      </div>
+    </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../JS/script.js"></script>
 
-            <hr class="SuHr">
-
-            <p style="margin-bottom: 5x; color: #8b8b8b; font-size: 8pt;">*Don't Have an Account? Click Sign Up</p>
-            <div class="SuButtons">
-              <a href="../Pages/login.html" class="btn" style="background-color: #ffffff; outline-style: solid; outline-color: #B57EFF; color: #B57EFF; padding: 12px 0 12px;">Login</a>
-              <a href="../Pages/home.html" class="btn" style="background: linear-gradient(to top right, #F1C3F2, #B57EFF); padding: 12px 0 12px;">Sign Up</a>
-            </div>
-          </form>
-        </div>
-        </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
   <footer>
   </footer>
 </html>
