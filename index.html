@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/main.css" />
 
 
-    <title>Landing Page</title>
+    <title>BingeBox</title>
   </head>
   <body>
     <div style="background: linear-gradient(to top , #756CBF, #191725);">
@@ -21,7 +21,7 @@
       <img class="navImg" style= "margin-right: 140px;" src="../Assets/Icons/BingeBox.png">
         <div class="navFlex">
           <div class="leftNavBar">
-            <div class="item" ><a href="Pages/login.html" id="active">Home</a></div>
+            <div class="item" ><a href="Pages/signup.html" id="active">Home</a></div>
             <div class="item"><a href="">Discover</a></div>
             <div class="item"><a href="">Library</a></div>
             </div>
@@ -33,177 +33,11 @@
             </button></div>
           <div class="rightNavBar">
             <div class="item" ><a href="">Settings</a></div>
-            <div class="item"><a href="Pages/login.html">Log In</a></div>
-            <div class="item"><a href="Pages/signup.html">Sign Up</a></div>
+            <div class="item"><a href="Pages/signup.html">Log In/Sign Up</a></div>
             </div>
         </div>
     </header>
 
-    <div style="display: flex; align-items: center; flex-direction: column;">
-        <div class="card heroCard" style="display: flex; justify-content: center;">
-          <div class="card-body heroCardBody">
-            <h5 class="card-title" style="color: white; font-size: 48px;">Name</h5>
-            <p class="card-text" style="color: white; font-size: 20px;">Year | Genre</p>
-            <div class="HeroCardBtn">
-            <a href="#" class="btn" style="background: linear-gradient(to top right, #F1C3F2, #B57EFF); padding: 12px 0 12px; height: 54px; width: 135px; border-radius: 14px;">Watch</a>
-            <button class=" btn " style="height: 54px; width:54px; margin-left: 20px; padding: 0; border: none;" onclick="">
-            <img style="height: 54px; width:54px;" src="../Assets/Icons/UnlikedHeart.png">
-            </button>
-            </div>
-          </div>
-        </div> 
-        </div>
-
-
-          <!--<div class="card smallCard trendingCard carousel-item">
-            <div class="smlLikeBtn">
-              <button class=" btn " style="height: 40px; width:40px; margin-left: 10px; padding: 0px; border: none;" onclick="">
-              <img style="height: 40px; width:40px;" src="../Assets/Icons/UnlikedHeart.png">
-            </button>
-            </div>
-            <div class="smlbodyGroup">
-            <div class="card-body smlCardBody">
-              <h5 class="card-title" style="color: rgb(255, 255, 255); font-size: 24px;">Name</h5>
-              <p class="card-text" style="color: rgb(255, 255, 255); font-size: 16px;">Year | Genre</p>
-              <div class="smlCardBtn">
-              <p class="card-text" style="color: rgb(255, 255, 255); font-size: 24px; font-weight: bold;">IMDB X</p> 
-              <a href="#" class="btn" style="background: linear-gradient(to top right, #F1C3F2, #B57EFF); padding: 12px 0 12px; height: 54px; width: 135px; border-radius: 14px;">Watch</a>
-              </div>
-            </div>
-            </div>
-          </div> -->
-          
-          <div id="trendingCarousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="col-md-3">
-                  <div class="card smallCard trendingCard">
-                    <div class="smlLikeBtn">
-                      <button class="btn" style="height: 40px; width:40px; margin-left: 10px; padding: 0px; border: none;">
-                        <img style="height: 40px; width:40px;" src="../Assets/Icons/UnlikedHeart.png">
-                      </button>
-                    </div>
-                    <div class="smlbodyGroup">
-                      <div class="card-body smlCardBody">
-                        <h5 class="card-title" style="color: rgb(255, 255, 255); font-size: 24px;">Name</h5>
-                        <p class="card-text" style="color: rgb(255, 255, 255); font-size: 16px;">Year | Genre</p>
-                        <div class="smlCardBtn">
-                          <p class="card-text" style="color: rgb(255, 255, 255); font-size: 24px; font-weight: bold;">IMDB X</p> 
-                          <a href="#" class="btn" style="background: linear-gradient(to top right, #F1C3F2, #B57EFF); padding: 12px 0 12px; height: 54px; width: 135px; border-radius: 14px;">Watch</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-              </div>
-              <div class="carousel-item">
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#trendingCarousel" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only"></span>
-            </a>
-            <a class="carousel-control-next" href="#trendingCarousel" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only"></span>
-            </a>
-          </div>
-      
-          <div id="continueWatching" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="col-md-3">
-                  <div class="card smallCard continueCard">
-                    <div class="smlLikeBtn">
-                      <button class="btn" style="height: 40px; width:40px; margin-left: 10px; padding: 0px; border: none;">
-                        <img style="height: 40px; width:40px;" src="../Assets/Icons/UnlikedHeart.png">
-                      </button>
-                    </div>
-                    <div class="smlbodyGroup">
-                      <div class="card-body smlCardBody">
-                        <h5 class="card-title" style="color: rgb(255, 255, 255); font-size: 24px;">Name</h5>
-                        <p class="card-text" style="color: rgb(255, 255, 255); font-size: 16px;">Year | Genre</p>
-                        <div class="smlCardBtn">
-                          <p class="card-text" style="color: rgb(255, 255, 255); font-size: 24px; font-weight: bold;">IMDB X</p> 
-                          <a href="#" class="btn" style="background: linear-gradient(to top right, #F1C3F2, #B57EFF); padding: 12px 0 12px; height: 54px; width: 135px; border-radius: 14px;">Watch</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-              </div>
-              <div class="carousel-item">
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#continueWatching" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only"></span>
-            </a>
-            <a class="carousel-control-next" href="#continueWatching" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only"></span>
-            </a>
-          </div>
-
-          <div id="discover" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="col-md-3">
-                  <div class="card smallCard discoverCard">
-                    <div class="smlLikeBtn">
-                      <button class="btn" style="height: 40px; width:40px; margin-left: 10px; padding: 0px; border: none;">
-                        <img style="height: 40px; width:40px;" src="../Assets/Icons/UnlikedHeart.png">
-                      </button>
-                    </div>
-                    <div class="smlbodyGroup">
-                      <div class="card-body smlCardBody">
-                        <h5 class="card-title" style="color: rgb(255, 255, 255); font-size: 24px;">Name</h5>
-                        <p class="card-text" style="color: rgb(255, 255, 255); font-size: 16px;">Year | Genre</p>
-                        <div class="smlCardBtn">
-                          <p class="card-text" style="color: rgb(255, 255, 255); font-size: 24px; font-weight: bold;">IMDB X</p> 
-                          <a href="#" class="btn" style="background: linear-gradient(to top right, #F1C3F2, #B57EFF); padding: 12px 0 12px; height: 54px; width: 135px; border-radius: 14px;">Watch</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-              </div>
-              <div class="carousel-item">
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-                <div class="col-md-3">...</div>
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#discoverCarousel" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only"></span>
-            </a>
-            <a class="carousel-control-next" href="#discoverCarousel" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only"></span>
-            </a>
-          </div>
-
-      </div>
-    </>
   </body>
   <footer>
     <div class="footer" style="background: linear-gradient(to top , #756CBF, #191725)";>
