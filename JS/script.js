@@ -90,3 +90,19 @@ $(document).ready(function() {
       }, "fast");
     });
   });
+
+  const myHeaders = new Headers();
+myHeaders.append("x-apihub-key", "ofbel0RCR9Uegh1-HAIw2QnrVPK84F0OHlPK7QxGdyM5C1jmCR");
+myHeaders.append("x-apihub-host", "Movies-Verse.allthingsdev.co");
+myHeaders.append("x-apihub-endpoint", "d3ee0b1f-e51c-46bc-99eb-c660726b0a1b");
+
+const requestOptions = {
+   method: "GET",
+   headers: myHeaders,
+   redirect: "follow"
+};
+
+fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-movies", requestOptions)
+   .then((response) => response.text())
+   .then((result) => console.log(result))
+   .catch((error) => console.error(error));
