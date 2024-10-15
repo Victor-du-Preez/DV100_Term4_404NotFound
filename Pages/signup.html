@@ -20,7 +20,7 @@
 
     <header>
       <header class="searchBar">
-        <img class="navImg" style= "margin-right: 140px;" src="./Assets/Icons/BingeBox.png">
+        <img class="navImg" style= "margin-right: 140px;" src="../Assets/Icons/BingeBox.png">
           <div class="navFlex">
             <div class="leftNavBar">
               <div class="item" ><a href="">Home</a></div>
@@ -31,11 +31,11 @@
               <input id="searchbar" style="height: 36px; width: 250px; border: none; background-color: #ffffff00;" 
               onkeyup=" ()" type="text" name="search" placeholder="Search...">
               <button class="btn" style="height: 36px; width: 36px; padding: 0;" type="button" id="searchButton">
-                <img style="height: 24px; width: 24px; padding-bottom: 2.5px;" src="./Assets/Icons/search.png">
+                <img style="height: 24px; width: 24px; padding-bottom: 2.5px;" src="../Assets/Icons/search.png">
               </button></div>
             <div class="rightNavBar">
               <div class="item" ><a href="">Settings</a></div>
-              <div class="item"><a href="./Pages/signup.html" id="active">Log In/Sign Up</a></div>
+              <div class="item"><a href="../Pages/signup.html" id="active">Log In/Sign Up</a></div>
               </div>
           </div>
       </header>
@@ -46,9 +46,9 @@
       <div class="form">
         <form class="register-form">
           <h1>Sign Up</h1>
-          <input id="create-email" type="text" placeholder="email address"/>
           <input id="create-username" type="text" placeholder="username"/>
-          <input type="password" id="create-password" type="text" placeholder="password"/>
+          <input id="create-password" type="text" placeholder="password"/>
+          <input id="create-email" type="text" placeholder="email address"/>
           <button name="create-button" type="button" id="create-button">create</button>
           <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
@@ -61,6 +61,30 @@
         </form>
       </div>
     </div>
+    <footer class="p-5 d-flex justify-content-between align-items-center" style="background: linear-gradient(to top right,  #F1C3F2, #B57EFF)">
+      <div class="w-25">
+        <img class="navImg" src="../Assets/Icons/BingeBoxBlack.png">
+        <div class="py-2 mt-3">
+          <img src="../Assets/Icons/Facebook Icon.png" width="40">
+          <img src="../Assets/Icons/Instagram Icon.png" width="40">
+          <img src="../Assets/Icons/Twitter Icon.png" width="40">
+          <img src="../Assets/Icons/LinkedIn Icon.png" width="40">
+        </div>
+      </div>
+  
+      <div class="w-75">
+        <div class="d-flex justify-content-between">
+          <h4 class="w-25 text-center"> Home</h4>
+          <h4  class="w-25 text-center">Library</h4>
+          <h4  class="w-25 text-center">Terms & Conditions</h4>
+        </div>
+        <div class="d-flex justify-content-between">
+          <h4  class="w-25 text-center">Discover</h4>
+          <h4  class="w-25 text-center">Profile</h4>
+          <h4  class="w-25 text-center">Privacy Policy</h4>
+        </div>
+      </div>
+    </footer>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../JS/script.js"></script>
