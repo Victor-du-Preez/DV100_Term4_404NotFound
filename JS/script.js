@@ -113,7 +113,18 @@ async function fetchMoviesByGenre(genres) {
     const results = await Promise.all(responses.map((response) => response.text()));
 
     results.forEach((result) => {
-      displayMovies(result);
+      const parsedResult = JSON.parse(result); 
+
+      console.log(parsedResult);
+
+      const movies = Array.isArray(parsedResult) ? parsedResult : parsedResult.movies || [];
+
+      const limitedMovies = movies.slice(0, 5);
+
+      limitedMovies.forEach(movie => {           // Iterate over only 5 movies
+        const markup = `<li>${movie.title}</li>`;
+        document.querySelector('ul').insertAdjacentHTML('beforeend', markup);
+      });
     });
   } catch (error) {
     console.error(error);
@@ -122,7 +133,3 @@ async function fetchMoviesByGenre(genres) {
 
 fetchMoviesByGenre(["action", "horror", "adventure", "romance"]);
 
-function displayMovies(_data) {
-  let myData = JSON.parse(_data);
-  console.log(myData);
-}
