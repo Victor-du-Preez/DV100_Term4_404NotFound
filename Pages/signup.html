@@ -16,55 +16,81 @@
     <title>Sign Up</title>
   </head>
   <body>
-    <div style="background-color: #191725;">
+    <div style="background-color: #191725;" class="px-5 py-3">
 
-    <header>
-      <header class="searchBar">
-        <img class="navImg" style= "margin-right: 140px;" src="./Assets/Icons/BingeBox.png">
-          <div class="navFlex">
-            <div class="leftNavBar">
-              <div class="item" ><a href="">Home</a></div>
-              <div class="item"><a href="">Discover</a></div>
-              <div class="item"><a href="">Library</a></div>
-              </div>
-              <div class="searchBorder">
-              <input id="searchbar" style="height: 36px; width: 250px; border: none; background-color: #ffffff00;" 
-              onkeyup=" ()" type="text" name="search" placeholder="Search...">
-              <button class="btn" style="height: 36px; width: 36px; padding: 0;" type="button" id="searchButton">
-                <img style="height: 24px; width: 24px; padding-bottom: 2.5px;" src="./Assets/Icons/search.png">
-              </button></div>
-            <div class="rightNavBar">
-              <div class="item" ><a href="">Settings</a></div>
-              <div class="item"><a href="./Pages/signup.html" id="active">Log In/Sign Up</a></div>
-              </div>
+      <header>
+        <div class="navFlex px-5 py-3 flex-wrap">
+          <img class="navImg" src="../Assets/Icons/BingeBox.png">
+            <a href="../Pages/home.html">Home</a>
+            <a href="">Discover</a>
+            <a href="">Library</a>
+          <div class="searchBorder">
+            <input id="searchbar" style="height: 36px; width: 250px; border: none; background-color: #f1c3f2;"
+              onkeyup="" type="text" name="search" placeholder="Search...">
+            <button class="btn" style="height: 36px; width: 36px; padding: 0;" type="button" id="searchButton">
+              <img style="height: 24px; width: 24px; padding-bottom: 2.5px;" src="../Assets/Icons/search.png">
+            </button>
           </div>
-      </header>
-    </header>
+            <a href="">Settings</a>
+            <a href="../DV100_Term4_404NotFound/Pages/login.html" id="active">Log In</a>
+            <a href="../DV100_Term4_404NotFound/Pages/signup.html">Sign In</a>
+        </div>
+  </header>
 
     <!-- JQuery login/signup -->
     <div class="login-page">
       <div class="form">
-        <form class="register-form">
-          <h1>Sign Up</h1>
-          <input id="create-email" type="text" placeholder="email address"/>
-          <input id="create-username" type="text" placeholder="username"/>
-          <input type="password" id="create-password" type="text" placeholder="password"/>
-          <button name="create-button" type="button" id="create-button">create</button>
-          <p class="message">Already registered? <a href="#">Sign In</a></p>
+        <form class="register-form d-flex flex-column align-items-center">
+          <h1 class="text-white py-4">Sign Up</h1>
+          <input id="create-email" style="height: 50px; width: 50%; background-color: #f1c3f2" class="rounded border-0 py-3 px-2 my-1" type="text" placeholder="email address"/>
+          <input id="create-username" style="height: 50px; width: 50%; background-color: #f1c3f2" class="rounded border-0 py-3 px-2 my-1" type="text" placeholder="username"/>
+          <input type="password" id="create-password" style="height: 50px; width: 50%; background-color: #f1c3f2" class="rounded border-0 py-3 px-2 my-1" type="text" placeholder="password"/>
+          <button name="create-button" class="btn px-4 my-4" style="background: linear-gradient(to top right,  #F1C3F2, #B57EFF); font-weight: 800 !important;"  font-weight="800 !important" type="button" id="create-button">Sign Up</button>
+          <p class="message" style="color:  #6100c2 !important;;">Already registered? <a href="#">Sign In</a></p>
         </form>
-        <form class="login-form">
-          <h1>Sign In</h1>
-          <input id="login-username" type="text" placeholder="username" name="login-username"/>
-          <input id="login-password" type="text" placeholder="password" name="login-password"/>
-          <button name="login-button" type="button" id="login-button">login</button>
-          <p class="message">Not registered? <a href="#">Create an account</a></p>
+
+
+        <form class="login-form d-flex flex-column align-items-center" >
+          <h1 class="text-white py-4">Login</h1>
+          <input id="login-username" style="height: 50px; width: 50%; background-color: #f1c3f2" class="rounded border-0 py-3 px-2 my-1" type="text" placeholder="username" name="login-username"/>
+          <input id="login-password" style="height: 50px; width: 50%; background-color: #f1c3f2" class="rounded border-0 py-3 px-2 my-1" type="text" placeholder="password" name="login-password"/>
+          <button name="login-button" class="btn px-4 my-4" style="background: linear-gradient(to top right,  #F1C3F2, #B57EFF);  font-weight: 800 !important;" type="button" id="login-button">Login</button>
+          <p class="message" style="color:  #6100c2 !important;">Not registered? <a href="#">Create an account</a></p>
         </form>
       </div>
     </div>
+  </div>
+
+
+    <footer class="p-5 d-flex justify-content-between align-items-center" style="background: linear-gradient(to top right,  #F1C3F2, #B57EFF)">
+      <div class="w-25">
+        <img class="navImg" src="../Assets/Icons/BingeBoxBlack.png">
+        <div class="py-2 mt-3">
+          <img src="../Assets/Icons/Facebook Icon.png" width="40">
+          <img src="../Assets/Icons/Instagram Icon.png" width="40">
+          <img src="../Assets/Icons/Twitter Icon.png" width="40">
+          <img src="../Assets/Icons/LinkedIn Icon.png" width="40">
+        </div>
+      </div>
+  
+      <div class="w-75">
+        <div class="d-flex justify-content-between">
+          <h4 class="w-25 text-center"> Home</h4>
+          <h4  class="w-25 text-center">Library</h4>
+          <h4  class="w-25 text-center">Terms & Conditions</h4>
+        </div>
+        <div class="d-flex justify-content-between">
+          <h4  class="w-25 text-center">Discover</h4>
+          <h4  class="w-25 text-center">Profile</h4>
+          <h4  class="w-25 text-center">Privacy Policy</h4>
+        </div>
+      </div>
+    </footer>
+
+
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../JS/script.js"></script>
 
-  <footer>
-  </footer>
+  
 </html>
