@@ -90,3 +90,46 @@ $(document).ready(function() {
       }, "fast");
     });
   });
+
+  const myHeaders = new Headers();
+myHeaders.append("x-apihub-key", "ofbel0RCR9Uegh1-HAIw2QnrVPK84F0OHlPK7QxGdyM5C1jmCR");
+myHeaders.append("x-apihub-host", "Movies-Verse.allthingsdev.co");
+myHeaders.append("x-apihub-endpoint", "dae9e3d3-6b6c-4fde-b298-ada2806ae563");
+
+const requestOptions = {
+   method: "GET",
+   headers: myHeaders,
+   redirect: "follow"
+};
+
+async function fetchMoviesByGenre(genres) {
+  try {
+    const requests = genres.map((genre) =>
+      fetch(`https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=${genre}`, requestOptions)
+    );
+
+    const responses = await Promise.all(requests);
+
+    const results = await Promise.all(responses.map((response) => response.text()));
+
+    results.forEach((result) => {
+      const parsedResult = JSON.parse(result); 
+
+      console.log(parsedResult);
+
+      const movies = Array.isArray(parsedResult) ? parsedResult : parsedResult.movies || [];
+
+      const limitedMovies = movies.slice(0, 5);
+
+      limitedMovies.forEach(movie => {           // Iterate over only 5 movies
+        const markup = `<li>${movie.title}</li>`;
+        document.querySelector('ul').insertAdjacentHTML('beforeend', markup);
+      });
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+fetchMoviesByGenre(["action", "horror", "adventure", "romance"]);
+
