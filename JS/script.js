@@ -117,3 +117,31 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
    })
    .catch(error => console.error(error));
 
+
+   fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=romance", requestOptions)
+   .then(res => res.json())
+   .then(data => {
+       if (data && data.movies) {
+           data.movies.forEach(movie => {
+               const markup = `<span style="display: inline-block; margin-right: 10px;">${movie.title}</span>`;
+               document.querySelector('#movie-continue').insertAdjacentHTML('beforeend', markup);
+           });
+       } else {
+           console.error("API response does not contain an array of movies.");
+       }
+   })
+   .catch(error => console.error(error));
+
+   fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=comedy", requestOptions)
+   .then(res => res.json())
+   .then(data => {
+       if (data && data.movies) {
+           data.movies.forEach(movie => {
+               const markup = `<span style="display: inline-block; margin-right: 10px;">${movie.title}</span>`;
+               document.querySelector('#movie-discovery').insertAdjacentHTML('beforeend', markup);
+           });
+       } else {
+           console.error("API response does not contain an array of movies.");
+       }
+   })
+   .catch(error => console.error(error));
