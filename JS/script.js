@@ -90,3 +90,91 @@ $(document).ready(function() {
       }, "fast");
     });
   });
+
+  const myHeaders = new Headers();
+myHeaders.append("x-apihub-key", "ofbel0RCR9Uegh1-HAIw2QnrVPK84F0OHlPK7QxGdyM5C1jmCR");
+myHeaders.append("x-apihub-host", "Movies-Verse.allthingsdev.co");
+myHeaders.append("x-apihub-endpoint", "dae9e3d3-6b6c-4fde-b298-ada2806ae563");
+
+const requestOptions = {
+   method: "GET",
+   headers: myHeaders,
+   redirect: "follow"
+};
+
+
+fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
+.then(res => res.json())
+.then(data => {
+    if (data && data.movies) {
+        const carouselInner = document.querySelector('.carousel-inner');
+        // Clear existing items if any
+        carouselInner.innerHTML = '';
+
+        data.movies.forEach((movie, index) => {
+            const activeClass = index === 0 ? 'active' : '';
+            
+            const carouselItem = `
+            <div class="carousel-item ${activeClass}">
+                <img
+                    src="${movie.image}"
+                    width="348px"
+                    height="209px"
+                    style="object-fit: fit"
+                    class="rounded-lg"
+                />
+                <div class="position-absolute">
+                    ${index + 1}
+                </div>
+                <div class="position-absolute">
+                    <p>${movie.title}</p>
+                    <div>
+                        <p>${movie.year} / ${movie.genre}</p>
+                        <p>IMDB ${movie.rating}</p>
+                    </div>
+                </div>
+            </div>`;
+            carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+        });
+    } else {
+        console.error("API response does not contain an array of movies.");
+    }
+})
+.catch(error => console.error(error));
+
+
+   fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=romance", requestOptions)
+   .then(res => res.json())
+   .then(data => {
+       if (data && data.movies) {
+           data.movies.forEach(movie => {
+            const markup = `
+            <div style="display: inline-block; margin-right: 10px;">
+                <img src="${movie.image}" alt="${movie.title}" style="width: 100px; height: 150px; object-fit: cover;" />
+                <span>${movie.title}</span>
+            </div>`;
+               document.querySelector('#movie-continue').insertAdjacentHTML('beforeend', markup);
+           });
+       } else {
+           console.error("API response does not contain an array of movies.");
+       }
+   })
+   .catch(error => console.error(error));
+
+   fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=comedy", requestOptions)
+   .then(res => res.json())
+   .then(data => {
+       if (data && data.movies) {
+           data.movies.forEach(movie => {
+            const markup = `
+            <div style="display: inline-block; margin-right: 10px;">
+                <img src="${movie.image}" alt="${movie.title}" style="width: 100px; height: 150px; object-fit: cover;" />
+                <span>${movie.title}</span>
+            </div>`;
+               document.querySelector('#movie-discovery').insertAdjacentHTML('beforeend', markup);
+           });
+       } else {
+           console.error("API response does not contain an array of movies.");
+       }
+   })
+   .catch(error => console.error(error));
