@@ -108,7 +108,11 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
    .then(data => {
        if (data && data.movies) {
            data.movies.forEach(movie => {
-               const markup = `<span style="display: inline-block; margin-right: 10px;">${movie.title}</span>`;
+            const markup = `
+            <div style="display: inline-block; margin-right: 10px;">
+                <img src="${movie.image}" alt="${movie.title}" style="width: 100px; height: 150px; object-fit: cover;" />
+                <span>${movie.title}</span>
+            </div>`;
                document.querySelector('#movie-trending').insertAdjacentHTML('beforeend', markup);
            });
        } else {
@@ -123,7 +127,11 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
    .then(data => {
        if (data && data.movies) {
            data.movies.forEach(movie => {
-               const markup = `<span style="display: inline-block; margin-right: 10px;">${movie.title}</span>`;
+            const markup = `
+            <div style="display: inline-block; margin-right: 10px;">
+                <img src="${movie.image}" alt="${movie.title}" style="width: 100px; height: 150px; object-fit: cover;" />
+                <span>${movie.title}</span>
+            </div>`;
                document.querySelector('#movie-continue').insertAdjacentHTML('beforeend', markup);
            });
        } else {
@@ -137,7 +145,11 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
    .then(data => {
        if (data && data.movies) {
            data.movies.forEach(movie => {
-               const markup = `<span style="display: inline-block; margin-right: 10px;">${movie.title}</span>`;
+            const markup = `
+            <div style="display: inline-block; margin-right: 10px;">
+                <img src="${movie.image}" alt="${movie.title}" style="width: 100px; height: 150px; object-fit: cover;" />
+                <span>${movie.title}</span>
+            </div>`;
                document.querySelector('#movie-discovery').insertAdjacentHTML('beforeend', markup);
            });
        } else {
