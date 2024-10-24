@@ -102,34 +102,18 @@ const requestOptions = {
    redirect: "follow"
 };
 
-async function fetchMoviesByGenre(genres) {
-  try {
-    const requests = genres.map((genre) =>
-      fetch(`https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=${genre}`, requestOptions)
-    );
 
-    const responses = await Promise.all(requests);
-
-    const results = await Promise.all(responses.map((response) => response.text()));
-
-    results.forEach((result) => {
-      const parsedResult = JSON.parse(result); 
-
-      console.log(parsedResult);
-
-      const movies = Array.isArray(parsedResult) ? parsedResult : parsedResult.movies || [];
-
-      const limitedMovies = movies.slice(0, 5);
-
-      limitedMovies.forEach(movie => {           // Iterate over only 5 movies
-        const markup = `<li>${movie.title}</li>`;
-        document.querySelector('ul').insertAdjacentHTML('beforeend', markup);
-      });
-    });
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-fetchMoviesByGenre(["action", "horror", "adventure", "romance"]);
+fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
+   .then(res => res.json())
+   .then(data => {
+       if (data && data.movies) {
+           data.movies.forEach(movie => {
+               const markup = `<span style="display: inline-block; margin-right: 10px;">${movie.title}</span>`;
+               document.querySelector('#movie-trending').insertAdjacentHTML('beforeend', markup);
+           });
+       } else {
+           console.error("API response does not contain an array of movies.");
+       }
+   })
+   .catch(error => console.error(error));
 
