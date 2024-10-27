@@ -91,7 +91,7 @@ $(document).ready(function() {
     });
   });
 
-  const myHeaders = new Headers();
+const myHeaders = new Headers();
 myHeaders.append("x-apihub-key", "ofbel0RCR9Uegh1-HAIw2QnrVPK84F0OHlPK7QxGdyM5C1jmCR");
 myHeaders.append("x-apihub-host", "Movies-Verse.allthingsdev.co");
 myHeaders.append("x-apihub-endpoint", "dae9e3d3-6b6c-4fde-b298-ada2806ae563");
@@ -103,78 +103,140 @@ const requestOptions = {
 };
 
 
-fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
-.then(res => res.json())
-.then(data => {
+fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-popular-movies", requestOptions)
+  .then(res => res.json())
+  .then(data => {
     if (data && data.movies) {
-        const carouselInner = document.querySelector('.carousel-inner');
-        // Clear existing items if any
-        carouselInner.innerHTML = '';
+      const carouselInner = document.querySelector('#trendingCarousel .carousel-inner');
+      carouselInner.innerHTML = '';
 
-        data.movies.forEach((movie, index) => {
-            const activeClass = index === 0 ? 'active' : '';
-            
-            const carouselItem = `
-            <div class="carousel-item ${activeClass}">
-                <img
-                    src="${movie.image}"
-                    width="348px"
-                    height="209px"
-                    style="object-fit: fit"
-                    class="rounded-lg"
-                />
-                <div class="position-absolute">
-                    ${index + 1}
+      let carouselItem = `<div class="carousel-item active"><div class="row">`;
+      data.movies.forEach((movie, index) => {
+        const timeline = movie.timeline || "Unknown";
+        const imdb = movie.imdbRating || "N/A";
+
+        carouselItem += `
+          <div class="col-md-3">
+            <div class="card bg-dark text-black" style="width: 100%;">
+              <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
+              <div class="card-img-overlay d-flex flex-column justify-content-end">
+                <div class="text-overlay">
+                  <h5 class="card-title">${movie.title}</h5>
+                  <p class="card-text">${movie.year} / ${timeline}</p>
+                  <p class="card-text">IMDB: ${imdb}</p>
                 </div>
-                <div class="position-absolute">
-                    <p>${movie.title}</p>
-                    <div>
-                        <p>${movie.year} / ${movie.genre}</p>
-                        <p>IMDB ${movie.rating}</p>
-                    </div>
-                </div>
-            </div>`;
-            carouselInner.insertAdjacentHTML('beforeend', carouselItem);
-        });
+              </div>
+            </div>
+          </div>
+        `;
+
+        // Start a new carousel item after every 4 movies
+        if ((index + 1) % 4 === 0) {
+          carouselItem += `</div></div>`; // Close row and item
+          carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+          carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
+        }
+      });
+
+      // Add remaining movies if any
+      if (carouselItem !== `<div class="carousel-item"><div class="row">`) {
+        carouselItem += `</div></div>`;
+        carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+      }
     } else {
-        console.error("API response does not contain an array of movies.");
+      console.error("API response does not contain an array of movies.");
     }
-})
-.catch(error => console.error(error));
+  })
+  .catch(error => console.error(error));
 
 
-   fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=romance", requestOptions)
-   .then(res => res.json())
-   .then(data => {
-       if (data && data.movies) {
-           data.movies.forEach(movie => {
-            const markup = `
-            <div style="display: inline-block; margin-right: 10px;">
-                <img src="${movie.image}" alt="${movie.title}" style="width: 100px; height: 150px; object-fit: cover;" />
-                <span>${movie.title}</span>
-            </div>`;
-               document.querySelector('#movie-continue').insertAdjacentHTML('beforeend', markup);
-           });
-       } else {
-           console.error("API response does not contain an array of movies.");
-       }
-   })
-   .catch(error => console.error(error));
+  fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
+  .then(res => res.json())
+  .then(data => {
+    if (data && data.movies) {
+      const carouselInner = document.querySelector('#continueCarousel .carousel-inner');
+      carouselInner.innerHTML = '';
 
-   fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=comedy", requestOptions)
-   .then(res => res.json())
-   .then(data => {
-       if (data && data.movies) {
-           data.movies.forEach(movie => {
-            const markup = `
-            <div style="display: inline-block; margin-right: 10px;">
-                <img src="${movie.image}" alt="${movie.title}" style="width: 100px; height: 150px; object-fit: cover;" />
-                <span>${movie.title}</span>
-            </div>`;
-               document.querySelector('#movie-discovery').insertAdjacentHTML('beforeend', markup);
-           });
-       } else {
-           console.error("API response does not contain an array of movies.");
-       }
-   })
-   .catch(error => console.error(error));
+      // Limit to the first five movies
+      const moviesToShow = data.movies.slice(0, 4);
+      let carouselItem = `<div class="carousel-item active"><div class="row">`;
+
+      moviesToShow.forEach((movie) => {
+        const timeline = movie.timeline || "Unknown";
+        const imdb = movie.imdbRating || "N/A";
+        const progressPercentage = Math.random() * 100; // Simulating progress; replace with actual data as needed
+
+        carouselItem += `
+          <div class="col-md-3"> <!-- Change to col-md-3 for four columns -->
+            <div class="card bg-dark text-black" style="width: 100%;">
+              <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
+              <div class="card-img-overlay d-flex flex-column justify-content-end">
+                <div class="text-overlay">
+                  <h5 class="card-title">${movie.title}</h5>
+                  <p class="card-text">${movie.year} / ${timeline}</p>
+                  <p class="card-text">IMDB: ${imdb}</p>
+                  <div class="progress" style="height: 8px; margin-top: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: ${progressPercentage}%; background-color: #28a745;" aria-valuenow="${progressPercentage}" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      carouselItem += `</div></div>`; // Close row and item
+      carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+
+    } else {
+      console.error("API response does not contain an array of movies.");
+    }
+  })
+  .catch(error => console.error(error));
+
+
+  fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-movies", requestOptions)
+  .then(res => res.json())
+  .then(data => {
+    if (data && data.movies) {
+      const carouselInner = document.querySelector('#discoverCarousel .carousel-inner');
+      carouselInner.innerHTML = '';
+
+      let carouselItem = `<div class="carousel-item active"><div class="row">`;
+      data.movies.forEach((movie, index) => {
+        const timeline = movie.timeline || "Unknown";
+        const imdb = movie.imdbRating || "N/A";
+
+        carouselItem += `
+          <div class="col-md-3">
+            <div class="card bg-dark text-black" style="width: 100%;">
+              <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
+              <div class="card-img-overlay d-flex flex-column justify-content-end">
+                <div class="text-overlay">
+                  <h5 class="card-title">${movie.title}</h5>
+                  <p class="card-text">${movie.year} / ${timeline}</p>
+                  <p class="card-text">IMDB: ${imdb}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        // Start a new carousel item after every 4 movies
+        if ((index + 1) % 4 === 0) {
+          carouselItem += `</div></div>`; // Close row and item
+          carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+          carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
+        }
+      });
+
+      // Add remaining movies if any
+      if (carouselItem !== `<div class="carousel-item"><div class="row">`) {
+        carouselItem += `</div></div>`;
+        carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+      }
+    } else {
+      console.error("API response does not contain an array of movies.");
+    }
+  })
+  .catch(error => console.error(error));
