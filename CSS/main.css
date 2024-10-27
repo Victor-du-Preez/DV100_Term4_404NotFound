@@ -267,17 +267,27 @@ button {
 
 .carousel-item {
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .carousel-inner {
   display: flex;
-  padding: 36px 24px 36px 24px;
+  padding: 36px 24px;
+  justify-content: space-between;
 }
 
-.carousel-item > .col-md-3 {
-  flex: 1 0 25%; /* Ensures 4 items per slide */
+.carousel-item > .row {
+  width: 100%; /* Ensure the row takes full width */
+}
+
+.card-img-overlay {
+  position: relative;
+}
+
+.text-overlay {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
@@ -291,6 +301,7 @@ button {
     flex: 1 0 100%; /* 1 item per slide on extra small screens */
   }
 }
+
 .searchBar {
   display: flex  !important;
   flex-direction: row !important;
