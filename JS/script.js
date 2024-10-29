@@ -103,6 +103,7 @@ const requestOptions = {
 };
 
 
+
 fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-popular-movies", requestOptions)
   .then(res => res.json())
   .then(data => {
@@ -124,6 +125,8 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-pop
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
                   <p class="card-text">IMDB: ${imdb}</p>
+                  <!-- Button to go to the individual movie page -->
+                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
                 </div>
               </div>
             </div>
@@ -143,11 +146,25 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-pop
         carouselItem += `</div></div>`;
         carouselInner.insertAdjacentHTML('beforeend', carouselItem);
       }
+
+      // Add event listeners to the "View Details" buttons
+      document.querySelectorAll('.view-details-btn').forEach(button => {
+        button.addEventListener('click', function () {
+          const movie = JSON.parse(this.getAttribute('data-movie'));
+
+          // Save movie data to localStorage
+          localStorage.setItem('selectedMovie', JSON.stringify(movie));
+
+          // Redirect to the individual movie page
+          window.location.href = "../Pages/singlepage.html";
+        });
+      });
     } else {
       console.error("API response does not contain an array of movies.");
     }
   })
   .catch(error => console.error(error));
+
 
 
 fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
@@ -216,6 +233,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
                   <p class="card-text">IMDB: ${imdb}</p>
+                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
                 </div>
               </div>
             </div>
@@ -234,7 +252,20 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
       if (carouselItem !== `<div class="carousel-item"><div class="row">`) {
         carouselItem += `</div></div>`;
         carouselInner.insertAdjacentHTML('beforeend', carouselItem);
-      }
+      };
+
+      // Add event listeners to the "View Details" buttons
+      document.querySelectorAll('.view-details-btn').forEach(button => {
+        button.addEventListener('click', function () {
+          const movie = JSON.parse(this.getAttribute('data-movie'));
+
+          // Save movie data to localStorage
+          localStorage.setItem('selectedMovie', JSON.stringify(movie));
+
+          // Redirect to the individual movie page
+          window.location.href = "../Pages/singlepage.html";
+        });
+      });
     } else {
       console.error("API response does not contain an array of movies.");
     }
@@ -262,6 +293,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
                   <p class="card-text">IMDB: ${imdb}</p>
+                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
                 </div>
               </div>
             </div>
@@ -281,6 +313,19 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
         carouselItem += `</div></div>`;
         carouselInner.insertAdjacentHTML('beforeend', carouselItem);
       }
+
+      // Add event listeners to the "View Details" buttons
+      document.querySelectorAll('.view-details-btn').forEach(button => {
+        button.addEventListener('click', function () {
+          const movie = JSON.parse(this.getAttribute('data-movie'));
+
+          // Save movie data to localStorage
+          localStorage.setItem('selectedMovie', JSON.stringify(movie));
+
+          // Redirect to the individual movie page
+          window.location.href = "../Pages/singlepage.html";
+        });
+      });
     } else {
       console.error("API response does not contain an array of movies.");
     }
@@ -308,6 +353,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
                   <p class="card-text">IMDB: ${imdb}</p>
+                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
                 </div>
               </div>
             </div>
@@ -327,17 +373,30 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
         carouselItem += `</div></div>`;
         carouselInner.insertAdjacentHTML('beforeend', carouselItem);
       }
+
+      // Add event listeners to the "View Details" buttons
+      document.querySelectorAll('.view-details-btn').forEach(button => {
+        button.addEventListener('click', function () {
+          const movie = JSON.parse(this.getAttribute('data-movie'));
+
+          // Save movie data to localStorage
+          localStorage.setItem('selectedMovie', JSON.stringify(movie));
+
+          // Redirect to the individual movie page
+          window.location.href = "../Pages/singlepage.html";
+        });
+      });
     } else {
       console.error("API response does not contain an array of movies.");
     }
   })
   .catch(error => console.error(error));
 
-  fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=fantasy", requestOptions)
+  fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=family", requestOptions)
   .then(res => res.json())
   .then(data => {
     if (data && data.movies) {
-      const carouselInner = document.querySelector('#fantasyCarousel .carousel-inner');
+      const carouselInner = document.querySelector('#fanmilyCarousel .carousel-inner');
       carouselInner.innerHTML = '';
 
       let carouselItem = `<div class="carousel-item active"><div class="row">`;
@@ -354,6 +413,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
                   <p class="card-text">IMDB: ${imdb}</p>
+                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
                 </div>
               </div>
             </div>
@@ -376,6 +436,53 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
     } else {
       console.error("API response does not contain an array of movies.");
     }
+
+    // Add event listeners to the "View Details" buttons
+    document.querySelectorAll('.view-details-btn').forEach(button => {
+      button.addEventListener('click', function () {
+        const movie = JSON.parse(this.getAttribute('data-movie'));
+
+        // Save movie data to localStorage
+        localStorage.setItem('selectedMovie', JSON.stringify(movie));
+
+        // Redirect to the individual movie page
+        window.location.href = "../Pages/singlepage.html";
+      });
+    });
   })
   .catch(error => console.error(error));
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get the selected movie data from localStorage
+    const selectedMovie = JSON.parse(localStorage.getItem("selectedMovie"));
   
+    if (selectedMovie) {
+      // Populate the movie details on the page
+      document.getElementById("movie-image").src = selectedMovie.image;
+      document.getElementById("movie-title").textContent = selectedMovie.title;
+      document.getElementById("movie-year").textContent = selectedMovie.year;
+      document.getElementById("movie-rating").textContent = selectedMovie.imdbRating || "N/A";
+      const imdbLinkElement = document.createElement("h2");
+        imdbLinkElement.innerHTML = `<a href="${selectedMovie.link || '#'}" target="_blank">View on IMDb</a>`;
+        document.querySelector(".movie-details").appendChild(imdbLinkElement);
+    } else {
+      console.error("No movie data found in localStorage");
+    }
+  });
+
+  !async function(){
+    let data = fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/upcoming-movies", requestOptions)
+       .then((response) => response.text())
+       .then((result) => {
+          //console.log(result);
+          displayMovies(result);
+          return result;
+       })
+       .catch((error) => console.error(error));  
+  }();
+  
+  function displayMovies(_data){
+    //console.log(_data);
+    let myData = JSON.parse(_data);
+    console.log(myData);
+  }
