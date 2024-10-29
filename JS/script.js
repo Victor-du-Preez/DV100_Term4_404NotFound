@@ -102,7 +102,6 @@ const requestOptions = {
   redirect: "follow"
 };
 
-
 fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-popular-movies", requestOptions)
   .then(res => res.json())
   .then(data => {
@@ -125,7 +124,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-pop
                   <p class="card-text">${movie.year} / ${timeline}</p>
                   <p class="card-text">IMDB: ${imdb}</p>
                   <!-- Button to go to the individual movie page -->
-                  <button class="btn btn-primary view-details-btn" data-movie='${JSON.stringify(movie)}'>View Details</button>
+                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
                 </div>
               </div>
             </div>
@@ -232,7 +231,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
                   <p class="card-text">IMDB: ${imdb}</p>
-                  <button class="btn btn-primary view-details-btn" data-movie='${JSON.stringify(movie)}'>View Details</button>
+                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
                 </div>
               </div>
             </div>
@@ -292,7 +291,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
                   <p class="card-text">IMDB: ${imdb}</p>
-                  <button class="btn btn-primary view-details-btn" data-movie='${JSON.stringify(movie)}'>View Details</button>
+                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
                 </div>
               </div>
             </div>
@@ -352,7 +351,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
                   <p class="card-text">IMDB: ${imdb}</p>
-                  <button class="btn btn-primary view-details-btn" data-movie='${JSON.stringify(movie)}'>View Details</button>
+                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
                 </div>
               </div>
             </div>
@@ -391,11 +390,11 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
   })
   .catch(error => console.error(error));
 
-  fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=fantasy", requestOptions)
+  fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=family", requestOptions)
   .then(res => res.json())
   .then(data => {
     if (data && data.movies) {
-      const carouselInner = document.querySelector('#fantasyCarousel .carousel-inner');
+      const carouselInner = document.querySelector('#fanmilyCarousel .carousel-inner');
       carouselInner.innerHTML = '';
 
       let carouselItem = `<div class="carousel-item active"><div class="row">`;
@@ -412,7 +411,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
                   <p class="card-text">IMDB: ${imdb}</p>
-                  <button class="btn btn-primary view-details-btn" data-movie='${JSON.stringify(movie)}'>View Details</button>
+                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
                 </div>
               </div>
             </div>
@@ -458,19 +457,30 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
     if (selectedMovie) {
       // Populate the movie details on the page
       document.getElementById("movie-image").src = selectedMovie.image;
-      document.getElementById("movie-image").alt = selectedMovie.title;
+      document.getElementById("movie-title").textContent = selectedMovie.title;
       document.getElementById("movie-year").textContent = selectedMovie.year;
       document.getElementById("movie-rating").textContent = selectedMovie.imdbRating || "N/A";
-
-      // Populate additional details if available (e.g., synopsis, director)
-      if (selectedMovie.synopsis) {
-        document.querySelector(".movie-details").insertAdjacentHTML(
-          'beforeend',
-          `<p>Synopsis: ${selectedMovie.synopsis}</p>`
-        );
-      }
+      const imdbLinkElement = document.createElement("h2");
+        imdbLinkElement.innerHTML = `<a href="${selectedMovie.link || '#'}" target="_blank">View on IMDb</a>`;
+        document.querySelector(".movie-details").appendChild(imdbLinkElement);
     } else {
       console.error("No movie data found in localStorage");
     }
   });
+
+  !async function(){
+    let data = fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/upcoming-movies", requestOptions)
+       .then((response) => response.text())
+       .then((result) => {
+          //console.log(result);
+          displayMovies(result);
+          return result;
+       })
+       .catch((error) => console.error(error));  
+  }();
   
+  function displayMovies(_data){
+    //console.log(_data);
+    let myData = JSON.parse(_data);
+    console.log(myData);
+  }
