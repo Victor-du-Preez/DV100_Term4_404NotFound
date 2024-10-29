@@ -102,6 +102,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
+
 fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-popular-movies", requestOptions)
   .then(res => res.json())
   .then(data => {
