@@ -18,23 +18,37 @@
 
     <div class="px-5 py-3" >
         <header>
-          <div class="navFlex px-5 py-3 flex-wrap">
-            <img class="navImg" src="../Assets/Icons/BingeBox.png">
-              <a href="../Pages/home.html">Home</a>
-              <a href="../Pages/discovery.html">Discover</a>
-              <a href="../Pages/library.html">Library</a>
-            <div class="searchBorder">
-              <input id="searchbar" style="height: 36px; width: 250px; border: none; background-color: #f1c3f2;"
-                onkeyup="" type="text" name="search" placeholder="Search...">
-              <button class="btn" style="height: 36px; width: 36px; padding: 0;" type="button" id="searchButton">
-                <img style="height: 24px; width: 24px; padding-bottom: 2.5px;" src="../Assets/Icons/search.png">
-              </button>
+            <div class="navFlex px-5 py-3 flex-wrap">
+                <img class="navImg" src="../Assets/Icons/BingeBox.png">
+                <a href="../Pages/home.html">Home</a>
+                <a href="../Pages/discovery.html">Discover</a>
+                <a href="">Library</a>
+                <div class="searchBorder">
+                    <input id="searchbar" style="height: 36px; width: 250px; border: none; background-color: #f1c3f2;"
+                        onkeyup="" type="text" name="search" placeholder="Search...">
+                    <button class="btn" style="height: 36px; width: 36px; padding: 0;" type="button" id="searchButton">
+                        <img style="height: 24px; width: 24px; padding-bottom: 2.5px;" src="../Assets/Icons/search.png">
+                    </button>
+                </div>
+                <a href="">Settings</a>
+                <a href="../index.html">Log Out</a>
             </div>
-              <a href="">Settings</a>
-              <a href="../DV100_Term4_404NotFound/Pages/login.html" id="active">Log In</a>
-              <a href="../DV100_Term4_404NotFound/Pages/signup.html">Sign In</a>
-          </div>
-    </header>
+        </header>
+
+        <h3 class="text-white px-5">Continue Watching</h3>
+        <div id="continueLibrary" class="carousel slide" data-ride="carousel" data-interval="false">
+            <div class="carousel-inner">
+                <!-- Carousel items will be injected here -->
+            </div>
+            <a class="carousel-control-prev" href="#continueLibrary" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#continueLibrary" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
 
 
     <h3 class="text-white py-5">Watchlist</h3>
@@ -74,78 +88,6 @@
                 </div>
             </div>
         </div>
-
-        
-            <div class="m-2">
-                <div>
-                  <img src="../Assets/Icons/peakpx.jpg" width="348px" height="209px" style="object-fit: cover;" class="rounded-lg">
-                  <div class="position-absolute rounded-lg d-flex align-items-center justify-content-center" style="background: linear-gradient(to top , #ffffff, #ffffff00
-                  ); width: 40px; height: 40px; font-weight: bolder ; margin-left: 280px; margin-top: -190px ;">
-                    <img src="../Assets/Icons/heart.png">
-                  </div>
-                </div>
-                <div class="position-absolute rounded-bottom px-4 py3" style="width: 348px; height: 90px; background: linear-gradient(to bottom , #ffffff, #ffffffa8); margin-top: -90px; ;">
-                    <p style="font-size:16px;" class="font-weight-bolder">Name</p>
-                    <div class="d-flex justify-content-between">
-                      <p style="font-size:14px; font-family: Merriweather, serif !important; " class="">Year / Genre</p>
-                      <p style="font-size:16px;" class="font-weight-bolder">IMDB X</p>
-                    </div>
-                </div>
-            </div>
-
-        
-                <div class="m-2">
-                    <div>
-                      <img src="../Assets/Icons/peakpx.jpg" width="348px" height="209px" style="object-fit: cover;" class="rounded-lg">
-                      <div class="position-absolute rounded-lg d-flex align-items-center justify-content-center" style="background: linear-gradient(to top , #ffffff, #ffffff00
-                      ); width: 40px; height: 40px; font-weight: bolder ; margin-left: 280px; margin-top: -190px ;">
-                        <img src="../Assets/Icons/heart.png">
-                      </div>
-                    </div>
-                    <div class="position-absolute rounded-bottom px-4 py3" style="width: 348px; height: 90px; background: linear-gradient(to bottom , #ffffff, #ffffffa8); margin-top: -90px; ;">
-                        <p style="font-size:16px;" class="font-weight-bolder">Name</p>
-                        <div class="d-flex justify-content-between">
-                          <p style="font-size:14px; font-family: Merriweather, serif !important; " class="">Year / Genre</p>
-                          <p style="font-size:16px;" class="font-weight-bolder">IMDB X</p>
-                        </div>
-                    </div>
-                </div>
-
-            
-                    <div class="m-2">
-                        <div>
-                          <img src="../Assets/Icons/peakpx.jpg" width="348px" height="209px" style="object-fit: cover;" class="rounded-lg">
-                          <div class="position-absolute rounded-lg d-flex align-items-center justify-content-center" style="background: linear-gradient(to top , #ffffff, #ffffff00
-                          ); width: 40px; height: 40px; font-weight: bolder ; margin-left: 280px; margin-top: -190px ;">
-                            <img src="../Assets/Icons/heart.png">
-                          </div>
-                        </div>
-                        <div class="position-absolute rounded-bottom px-4 py3" style="width: 348px; height: 90px; background: linear-gradient(to bottom , #ffffff, #ffffffa8); margin-top: -90px; ;">
-                            <p style="font-size:16px;" class="font-weight-bolder">Name</p>
-                            <div class="d-flex justify-content-between">
-                              <p style="font-size:14px; font-family: Merriweather, serif !important; " class="">Year / Genre</p>
-                              <p style="font-size:16px;" class="font-weight-bolder">IMDB X</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="m-2">
-                        <div>
-                          <img src="../Assets/Icons/peakpx.jpg" width="348px" height="209px" style="object-fit: cover;" class="rounded-lg">
-                          <div class="position-absolute rounded-lg d-flex align-items-center justify-content-center" style="background: linear-gradient(to top , #ffffff, #ffffff00
-                          ); width: 40px; height: 40px; font-weight: bolder ; margin-left: 280px; margin-top: -190px ;">
-                            <img src="../Assets/Icons/heart.png">
-                          </div>
-                        </div>
-                        <div class="position-absolute rounded-bottom px-4 py3" style="width: 348px; height: 90px; background: linear-gradient(to bottom , #ffffff, #ffffffa8); margin-top: -90px; ;">
-                            <p style="font-size:16px;" class="font-weight-bolder">Name</p>
-                            <div class="d-flex justify-content-between">
-                              <p style="font-size:14px; font-family: Merriweather, serif !important; " class="">Year / Genre</p>
-                              <p style="font-size:16px;" class="font-weight-bolder">IMDB X</p>
-                            </div>
-                        </div>
-                    </div>
-
 
                     
     
