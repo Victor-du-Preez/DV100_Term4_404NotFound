@@ -281,8 +281,8 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
   .catch(error => console.error(error));
 
 
-  //Discovery fetch
-  fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
+//Discovery fetch
+fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
   .then(res => res.json())
   .then(data => {
     if (data && data.movies) {
@@ -347,7 +347,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
   })
   .catch(error => console.error(error));
 
-  fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=romance", requestOptions)
+fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=romance", requestOptions)
   .then(res => res.json())
   .then(data => {
     if (data && data.movies) {
@@ -412,7 +412,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
   })
   .catch(error => console.error(error));
 
-  fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=family", requestOptions)
+fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=family", requestOptions)
   .then(res => res.json())
   .then(data => {
     if (data && data.movies) {
@@ -432,9 +432,13 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
                 <div class="text-overlay">
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
-                  <p class="card-text">IMDB: ${imdb}</p>
-                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
-                </div>
+                  <p class="card-text">
+                    IMDB: ${imdb} 
+                    <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" 
+                      style="background-color: #6100c2; display: block; float: right;" 
+                      data-movie='${JSON.stringify(movie)}'>View Details
+                    </button>
+                  </p>
               </div>
             </div>
           </div>
@@ -459,22 +463,22 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
 
     //Library fetch
     fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
-  .then(res => res.json())
-  .then(data => {
-    if (data && data.movies) {
-      const carouselInner = document.querySelector('#continueLibrary .carousel-inner');
-      carouselInner.innerHTML = '';
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.movies) {
+          const carouselInner = document.querySelector('#continueLibrary .carousel-inner');
+          carouselInner.innerHTML = '';
 
-      // Limit to the first seven movies
-      const moviesToShow = data.movies.slice(0, 7);
-      let carouselItem = `<div class="carousel-item active"><div class="row">`;
+          // Limit to the first seven movies
+          const moviesToShow = data.movies.slice(0, 7);
+          let carouselItem = `<div class="carousel-item active"><div class="row">`;
 
-      moviesToShow.forEach((movie, index) => {
-        const timeline = movie.timeline || "Unknown";
-        const imdb = movie.imdbRating || "N/A";
-        const progressPercentage = Math.random() * 100; // Simulating progress; replace with actual data as needed
+          moviesToShow.forEach((movie, index) => {
+            const timeline = movie.timeline || "Unknown";
+            const imdb = movie.imdbRating || "N/A";
+            const progressPercentage = Math.random() * 100; // Simulating progress; replace with actual data as needed
 
-        carouselItem += `
+            carouselItem += `
           <div class="col-md-3">
             <div class="card bg-dark text-black" style="width: 100%;">
               <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
@@ -492,24 +496,24 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
           </div>
         `;
 
-        // Start a new carousel item after every 4 movies
-        if ((index + 1) % 4 === 0) {
-          carouselItem += `</div></div>`; // Close row and item
-          carouselInner.insertAdjacentHTML('beforeend', carouselItem);
-          carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
-        }
-      });
+            // Start a new carousel item after every 4 movies
+            if ((index + 1) % 4 === 0) {
+              carouselItem += `</div></div>`; // Close row and item
+              carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+              carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
+            }
+          });
 
-      // Add remaining movies if any
-      if (carouselItem !== `<div class="carousel-item"><div class="row">`) {
-        carouselItem += `</div></div>`;
-        carouselInner.insertAdjacentHTML('beforeend', carouselItem);
-      }
-    } else {
-      console.error("API response does not contain an array of movies.");
-    }
-  })
-  .catch(error => console.error(error));
+          // Add remaining movies if any
+          if (carouselItem !== `<div class="carousel-item"><div class="row">`) {
+            carouselItem += `</div></div>`;
+            carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+          }
+        } else {
+          console.error("API response does not contain an array of movies.");
+        }
+      })
+      .catch(error => console.error(error));
 
     // Add event listeners to the "View Details" buttons
     document.querySelectorAll('.view-details-btn').forEach(button => {
@@ -526,24 +530,23 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
   })
   .catch(error => console.error(error));
 
-  document.addEventListener("DOMContentLoaded", function () {
-    // Get the selected movie data from localStorage
-    const selectedMovie = JSON.parse(localStorage.getItem("selectedMovie"));
+document.addEventListener("DOMContentLoaded", function () {
+  // Get the selected movie data from localStorage
+  const selectedMovie = JSON.parse(localStorage.getItem("selectedMovie"));
 
-    if (selectedMovie) {
-        // Populate the movie details on the page
-        document.getElementById("movie-image").src = selectedMovie.image;
-        document.getElementById("movie-title").textContent = selectedMovie.title;
-        document.getElementById("movie-year").textContent = selectedMovie.year;
-        document.getElementById("movie-rating").textContent = selectedMovie.imdbRating || "N/A";
+  if (selectedMovie) {
+    // Populate the movie details on the page
+    document.getElementById("movie-image").src = selectedMovie.image;
+    document.getElementById("movie-title").textContent = selectedMovie.title;
+    document.getElementById("movie-year").textContent = selectedMovie.year;
+    document.getElementById("movie-rating").textContent = selectedMovie.imdbRating || "N/A";
 
-        const imdbLinkElement = document.createElement("h2");
-        imdbLinkElement.classList.add("ml-3"); // Add ml-5 class for margin
-        imdbLinkElement.innerHTML = `<a href="${selectedMovie.link || '#'}" target="_blank">View on IMDb</a>`;
-        document.getElementById("movie-text").appendChild(imdbLinkElement); // Append to movie-text
-    } else {
-        console.error("No movie data found in localStorage");
-    }
+    const imdbLinkElement = document.createElement("h2");
+    imdbLinkElement.classList.add("ml-3"); // Add ml-5 class for margin
+    imdbLinkElement.innerHTML = `<a href="${selectedMovie.link || '#'}" target="_blank">View on IMDb</a>`;
+    document.getElementById("movie-text").appendChild(imdbLinkElement); // Append to movie-text
+  } else {
+    console.error("No movie data found in localStorage");
+  }
 });
 
-  
