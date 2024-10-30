@@ -104,6 +104,7 @@ const requestOptions = {
 
 
 
+//Home fetch
 fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-popular-movies", requestOptions)
   .then(res => res.json())
   .then(data => {
@@ -279,6 +280,8 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
   })
   .catch(error => console.error(error));
 
+
+  //Discovery fetch
   fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
   .then(res => res.json())
   .then(data => {
@@ -454,40 +457,8 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
       console.error("API response does not contain an array of movies.");
     }
 
-    // Add event listeners to the "View Details" buttons
-    document.querySelectorAll('.view-details-btn').forEach(button => {
-      button.addEventListener('click', function () {
-        const movie = JSON.parse(this.getAttribute('data-movie'));
-
-        // Save movie data to localStorage
-        localStorage.setItem('selectedMovie', JSON.stringify(movie));
-
-        // Redirect to the individual movie page
-        window.location.href = "../Pages/singlepage.html";
-      });
-    });
-  })
-  .catch(error => console.error(error));
-
-  document.addEventListener("DOMContentLoaded", function () {
-    // Get the selected movie data from localStorage
-    const selectedMovie = JSON.parse(localStorage.getItem("selectedMovie"));
-  
-    if (selectedMovie) {
-      // Populate the movie details on the page
-      document.getElementById("movie-image").src = selectedMovie.image;
-      document.getElementById("movie-title").textContent = selectedMovie.title;
-      document.getElementById("movie-year").textContent = selectedMovie.year;
-      document.getElementById("movie-rating").textContent = selectedMovie.imdbRating || "N/A";
-      const imdbLinkElement = document.createElement("h2");
-        imdbLinkElement.innerHTML = `<a href="${selectedMovie.link || '#'}" target="_blank">View on IMDb</a>`;
-        document.querySelector(".movie-details").appendChild(imdbLinkElement);
-    } else {
-      console.error("No movie data found in localStorage");
-    }
-  });
-
-  fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
+    //Library fetch
+    fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
   .then(res => res.json())
   .then(data => {
     if (data && data.movies) {
@@ -539,3 +510,40 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
     }
   })
   .catch(error => console.error(error));
+
+    // Add event listeners to the "View Details" buttons
+    document.querySelectorAll('.view-details-btn').forEach(button => {
+      button.addEventListener('click', function () {
+        const movie = JSON.parse(this.getAttribute('data-movie'));
+
+        // Save movie data to localStorage
+        localStorage.setItem('selectedMovie', JSON.stringify(movie));
+
+        // Redirect to the individual movie page
+        window.location.href = "../Pages/singlepage.html";
+      });
+    });
+  })
+  .catch(error => console.error(error));
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get the selected movie data from localStorage
+    const selectedMovie = JSON.parse(localStorage.getItem("selectedMovie"));
+
+    if (selectedMovie) {
+        // Populate the movie details on the page
+        document.getElementById("movie-image").src = selectedMovie.image;
+        document.getElementById("movie-title").textContent = selectedMovie.title;
+        document.getElementById("movie-year").textContent = selectedMovie.year;
+        document.getElementById("movie-rating").textContent = selectedMovie.imdbRating || "N/A";
+
+        const imdbLinkElement = document.createElement("h2");
+        imdbLinkElement.classList.add("ml-3"); // Add ml-5 class for margin
+        imdbLinkElement.innerHTML = `<a href="${selectedMovie.link || '#'}" target="_blank">View on IMDb</a>`;
+        document.getElementById("movie-text").appendChild(imdbLinkElement); // Append to movie-text
+    } else {
+        console.error("No movie data found in localStorage");
+    }
+});
+
+  

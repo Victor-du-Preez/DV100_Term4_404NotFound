@@ -381,21 +381,33 @@ a {
 }
 
 .movie-details {
-  max-width: 800px;
-  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; 
+}
+
+#movie-image {
+  height: 100vh; 
+  width: auto; 
+}
+
+.movie-content {
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 8px;
-  text-align: center;
-  color: white;
+  color: #fff;
+  flex: 1;
+  text-align: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.movie-details img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+.movie-text {
+  display: block;
 }
 
-.movie-details h1, .movie-details h2, .movie-details p {
-  margin: 10px 0;
+
+
+.movie-text a {
+  text-decoration: none;
 }
