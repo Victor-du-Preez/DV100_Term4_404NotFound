@@ -169,8 +169,6 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-pop
   })
   .catch(error => console.error(error));
 
-
-
 fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
   .then(res => res.json())
   .then(data => {
@@ -178,7 +176,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
       const carouselInner = document.querySelector('#continueCarousel .carousel-inner');
       carouselInner.innerHTML = '';
 
-      // Limit to the first five movies
+      // Limit to the first movie
       const moviesToShow = data.movies.slice(0, 1);
       let carouselItem = `<div class="carousel-item active"><div class="row">`;
 
@@ -489,4 +487,55 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
     }
   });
 
-  
+  fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
+  .then(res => res.json())
+  .then(data => {
+    if (data && data.movies) {
+      const carouselInner = document.querySelector('#continueLibrary .carousel-inner');
+      carouselInner.innerHTML = '';
+
+      // Limit to the first seven movies
+      const moviesToShow = data.movies.slice(0, 7);
+      let carouselItem = `<div class="carousel-item active"><div class="row">`;
+
+      moviesToShow.forEach((movie, index) => {
+        const timeline = movie.timeline || "Unknown";
+        const imdb = movie.imdbRating || "N/A";
+        const progressPercentage = Math.random() * 100; // Simulating progress; replace with actual data as needed
+
+        carouselItem += `
+          <div class="col-md-3">
+            <div class="card bg-dark text-black" style="width: 100%;">
+              <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
+              <div class="card-img-overlay d-flex flex-column justify-content-end">
+                <div class="text-overlay">
+                  <h5 class="card-title">${movie.title}</h5>
+                  <p class="card-text">${movie.year} / ${timeline}</p>
+                  <p class="card-text">IMDB: ${imdb}</p>
+                  <div class="progress" style="height: 8px; margin-top: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: ${progressPercentage}%; background-color: #6100c2;" aria-valuenow="${progressPercentage}" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        // Start a new carousel item after every 4 movies
+        if ((index + 1) % 4 === 0) {
+          carouselItem += `</div></div>`; // Close row and item
+          carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+          carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
+        }
+      });
+
+      // Add remaining movies if any
+      if (carouselItem !== `<div class="carousel-item"><div class="row">`) {
+        carouselItem += `</div></div>`;
+        carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+      }
+    } else {
+      console.error("API response does not contain an array of movies.");
+    }
+  })
+  .catch(error => console.error(error));
