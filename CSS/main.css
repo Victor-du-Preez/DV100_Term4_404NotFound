@@ -283,6 +283,11 @@ button {
   position: relative;
 }
 
+.card{
+  text-shadow: 2px 2px 5px;
+  font-weight: bold;
+}
+
 .text-overlay {
   background-color: rgba(255, 255, 255, 0.7);
   padding: 10px;

@@ -103,6 +103,7 @@ const requestOptions = {
 };
 
 
+
 fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-popular-movies", requestOptions)
   .then(res => res.json())
   .then(data => {
@@ -123,9 +124,13 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-pop
                 <div class="text-overlay">
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
-                  <p class="card-text">IMDB: ${imdb}</p>
-                  <!-- Button to go to the individual movie page -->
-                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
+                  <p class="card-text">
+                    IMDB: ${imdb} 
+                    <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" 
+                      style="background-color: #6100c2; display: block; float: right;" 
+                      data-movie='${JSON.stringify(movie)}'>View Details
+                    </button>
+                  </p>
                 </div>
               </div>
             </div>
@@ -174,7 +179,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
       carouselInner.innerHTML = '';
 
       // Limit to the first five movies
-      const moviesToShow = data.movies.slice(0, 4);
+      const moviesToShow = data.movies.slice(0, 1);
       let carouselItem = `<div class="carousel-item active"><div class="row">`;
 
       moviesToShow.forEach((movie) => {
@@ -192,7 +197,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
                   <p class="card-text">${movie.year} / ${timeline}</p>
                   <p class="card-text">IMDB: ${imdb}</p>
                   <div class="progress" style="height: 8px; margin-top: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: ${progressPercentage}%; background-color: #28a745;" aria-valuenow="${progressPercentage}" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" style="width: ${progressPercentage}%; background-color: #6100c2;" aria-valuenow="${progressPercentage}" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
@@ -231,8 +236,13 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
                 <div class="text-overlay">
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
-                  <p class="card-text">IMDB: ${imdb}</p>
-                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
+                  <p class="card-text">
+                    IMDB: ${imdb} 
+                    <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" 
+                      style="background-color: #6100c2; display: block; float: right;" 
+                      data-movie='${JSON.stringify(movie)}'>View Details
+                    </button>
+                  </p>
                 </div>
               </div>
             </div>
@@ -291,8 +301,13 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
                 <div class="text-overlay">
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
-                  <p class="card-text">IMDB: ${imdb}</p>
-                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
+                  <p class="card-text">
+                    IMDB: ${imdb} 
+                    <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" 
+                      style="background-color: #6100c2; display: block; float: right;" 
+                      data-movie='${JSON.stringify(movie)}'>View Details
+                    </button>
+                  </p>
                 </div>
               </div>
             </div>
@@ -351,8 +366,13 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
                 <div class="text-overlay">
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
-                  <p class="card-text">IMDB: ${imdb}</p>
-                  <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" style="background-color: #6100c2;" data-movie='${JSON.stringify(movie)}'>View Details</button>
+                  <p class="card-text">
+                    IMDB: ${imdb} 
+                    <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" 
+                      style="background-color: #6100c2; display: block; float: right;" 
+                      data-movie='${JSON.stringify(movie)}'>View Details
+                    </button>
+                  </p>
                 </div>
               </div>
             </div>
@@ -469,19 +489,4 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
     }
   });
 
-  !async function(){
-    let data = fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/upcoming-movies", requestOptions)
-       .then((response) => response.text())
-       .then((result) => {
-          //console.log(result);
-          displayMovies(result);
-          return result;
-       })
-       .catch((error) => console.error(error));  
-  }();
   
-  function displayMovies(_data){
-    //console.log(_data);
-    let myData = JSON.parse(_data);
-    console.log(myData);
-  }
