@@ -610,7 +610,7 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
   })
   .catch(error => console.error(error));
 
-
+//Single page functionality
 document.addEventListener("DOMContentLoaded", function () {
   // Get the selected movie data from localStorage
   const selectedMovie = JSON.parse(localStorage.getItem("selectedMovie"));
@@ -631,29 +631,134 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+
+//Filter Buttons\
 function toggleDropdown() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
-function filterFunction() {
-  let input = document.getElementById("myInput");
-  let filter = input.value.toUpperCase();
-  let a = document.getElementById("myDropdown").getElementsByTagName("a");
-  for (let i = 0; i < a.length; i++) {
-      let txtValue = a[i].textContent || a[i].innerText;
-      a[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+function toggleRatingDropdown() {
+  document.getElementById("ratingDropdown").classList.toggle("show");
+}
+
+// Close the dropdowns if the user clicks outside of them
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    const dropdowns = document.getElementsByClassName("dropdown-content");
+    for (let i = 0; i < dropdowns.length; i++) {
+      const openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+let allMovies = {
+  action: [],
+  romance: [],
+  family: [],
+  horror: []
+};
+
+function fetchMovies() {
+  const genres = ['action', 'romance', 'family', 'horror'];
+  
+  genres.forEach(genre => {
+    fetch(`https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=${genre}`, requestOptions)
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.movies) {
+          allMovies[genre] = data.movies; // Store all movies in an object
+          populateCarousel(genre, data.movies);
+        } else {
+          console.error("API response does not contain an array of movies.");
+        }
+      })
+      .catch(error => console.error(error));
+  });
+}
+
+function populateCarousel(genre, movies) {
+  const carouselInner = document.querySelector(`#${genre}Carousel .carousel-inner`);
+  carouselInner.innerHTML = '';
+
+  if (movies.length === 0) {
+    carouselInner.innerHTML = '<p>No movies found in this rating range.</p>'; // Message for no results
+    return; // Exit early if no movies
+  }
+
+  let carouselItem = `<div class="carousel-item active"><div class="row">`;
+  movies.forEach((movie, index) => {
+    const timeline = movie.timeline || "Unknown";
+    const imdb = movie.imdbRating || "N/A";
+
+    carouselItem += `
+      <div class="col-md-3">
+        <div class="card bg-dark text-black" style="width: 100%;">
+          <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
+          <div class="card-img-overlay d-flex flex-column justify-content-end">
+            <div class="text-overlay">
+              <h5 class="card-title">${movie.title}</h5>
+              <p class="card-text">${movie.year} / ${timeline}</p>
+              <p class="card-text">
+                IMDB: ${imdb} 
+                <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" 
+                  style="background-color: #6100c2; display: block; float: right;" 
+                  data-movie='${JSON.stringify(movie)}'>View Details
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Start a new carousel item after every 4 movies
+    if ((index + 1) % 4 === 0) {
+      carouselItem += `</div></div>`; // Close row and item
+      carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+      carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
+    }
+  });
+
+  // Add remaining movies if any
+  if (carouselItem !== `<div class="carousel-item"><div class="row">`) {
+    carouselItem += `</div></div>`;
+    carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+  }
+
+  // Add event listeners to the "View Details" buttons
+  document.querySelectorAll('.view-details-btn').forEach(button => {
+    button.addEventListener('click', function () {
+      const movie = JSON.parse(this.getAttribute('data-movie'));
+      localStorage.setItem('selectedMovie', JSON.stringify(movie));
+      window.location.href = "../Pages/singlepage.html";
+    });
+  });
+}
+
+function filterByRating(minRating, maxRating) {
+  for (const genre in allMovies) {
+    const filteredMovies = allMovies[genre].filter(movie => {
+      const imdb = movie.imdbRating;
+
+      // Ensure we only consider numeric ratings and ignore N/A
+      if (imdb === "N/A") return false;
+      const rating = parseFloat(imdb);
+      
+      // Adjust conditions based on the selected range
+      return rating >= minRating && rating < maxRating;
+    });
+
+    // Populate carousel for the genre with filtered movies
+    populateCarousel(genre, filteredMovies);
   }
 }
 
 function scrollToGenre(carouselId) {
   const element = document.getElementById(carouselId);
-  
-  if (element) {
-      // Calculate the top position relative to the entire document
-      const topPosition = element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: topPosition, behavior: "smooth" });
-  } else {
-      console.log(`Element with ID ${carouselId} not found`);
-  }
+  element.scrollIntoView({ behavior: 'smooth' });
 }
 
+fetchMovies(); // Call the function to fetch all movies initially

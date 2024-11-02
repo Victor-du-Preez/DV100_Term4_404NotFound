@@ -53,17 +53,29 @@
             </div>
         </div>
 
-        <div class="dropdown">
-            <button onclick="toggleDropdown()" class="dropbtn">Select Genre</button>
-            <div id="myDropdown" class="dropdown-content">
+        <div class="filter-container">
+            <div class="dropdown">
+              <button onclick="toggleRatingDropdown()" class="dropbtn">Filter by IMDb Rating</button>
+              <div id="ratingDropdown" class="dropdown-content">
+                <a href="#" id="showAllRating" onclick="filterByRating(0, 10)">Show All</a>
+                <a href="#" onclick="filterByRating(0, 5)">0 - 5</a>
+                <a href="#" onclick="filterByRating(5, 7)">5 - 7</a>
+                <a href="#" onclick="filterByRating(7, 10)">7 - 10</a>
+              </div>
+            </div>
+            
+            <div class="dropdown">
+              <button onclick="toggleDropdown()" class="dropbtn">Select Genre</button>
+              <div id="myDropdown" class="dropdown-content">
                 <a href="#" onclick="scrollToGenre('actionCarousel')">Action</a>
                 <a href="#" onclick="scrollToGenre('romanceCarousel')">Romance</a>
                 <a href="#" onclick="scrollToGenre('familyCarousel')">Family</a>
                 <a href="#" onclick="scrollToGenre('horrorCarousel')">Horror</a>
+              </div>
             </div>
-        </div>
-            
-
+          </div>
+          
+        
         <h3 id="action" class="text-white pl-5">Action</h3>
 
         <div id="actionCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -110,7 +122,7 @@
             </a>
         </div>
 
-        <h3 id="horrorCarousel" class="text-white px-5">Horror</h3>
+        <h3 class="text-white px-5">Horror</h3>
         <div id="horrorCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
             <div class="carousel-inner">
                 <!-- Carousel items will be injected here -->

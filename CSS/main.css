@@ -459,8 +459,8 @@ a {
 /* Dropdown Content */
 .dropdown-content {
   display: none;
-  position: absolute;
-  top: 100%;
+  position: absolute; /* Change from static to absolute or fixed */
+  top: 100%; /* This keeps it below the dropdown button */
   margin-top: 10px;
   background-color: #333;
   min-width: 250px;
@@ -506,4 +506,12 @@ a {
 /* Show Dropdown on Click */
 .show {
   display: block;
+}
+
+/* Flex container to align dropdowns side-by-side */
+.filter-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Adjust the spacing between dropdowns as desired */
+  margin-top: 2rem;
 }
