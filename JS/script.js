@@ -113,12 +113,14 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-pop
       carouselInner.innerHTML = '';
 
       let carouselItem = `<div class="carousel-item active"><div class="row">`;
+      const itemsPerSlide = window.innerWidth < 576 ? 1 : (window.innerWidth < 768 ? 2 : 4);
+
       data.movies.forEach((movie, index) => {
         const timeline = movie.timeline || "Unknown";
         const imdb = movie.imdbRating || "N/A";
 
         carouselItem += `
-          <div class="col-md-3">
+          <div class="col-md-${12 / itemsPerSlide}">
             <div class="card bg-dark text-black" style="width: 100%;">
               <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
               <div class="card-img-overlay d-flex flex-column justify-content-end">
@@ -138,8 +140,8 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-pop
           </div>
         `;
 
-        // Start a new carousel item after every 4 movies
-        if ((index + 1) % 4 === 0) {
+        // Start a new carousel item after the specified number of movies
+        if ((index + 1) % itemsPerSlide === 0) {
           carouselItem += `</div></div>`; // Close row and item
           carouselInner.insertAdjacentHTML('beforeend', carouselItem);
           carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
@@ -223,12 +225,14 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
       carouselInner.innerHTML = '';
 
       let carouselItem = `<div class="carousel-item active"><div class="row">`;
+      const itemsPerSlide = window.innerWidth < 576 ? 1 : (window.innerWidth < 768 ? 2 : 4);
+
       data.movies.forEach((movie, index) => {
         const timeline = movie.timeline || "Unknown";
         const imdb = movie.imdbRating || "N/A";
 
         carouselItem += `
-          <div class="col-md-3">
+          <div class="col-md-${12 / itemsPerSlide}">
             <div class="card bg-dark text-black" style="width: 100%;">
               <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
               <div class="card-img-overlay d-flex flex-column justify-content-end">
@@ -248,8 +252,8 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
           </div>
         `;
 
-        // Start a new carousel item after every 4 movies
-        if ((index + 1) % 4 === 0) {
+        // Start a new carousel item after the specified number of movies
+        if ((index + 1) % itemsPerSlide === 0) {
           carouselItem += `</div></div>`; // Close row and item
           carouselInner.insertAdjacentHTML('beforeend', carouselItem);
           carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
@@ -290,12 +294,14 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
       carouselInner.innerHTML = '';
 
       let carouselItem = `<div class="carousel-item active"><div class="row">`;
+      const itemsPerSlide = window.innerWidth < 576 ? 1 : (window.innerWidth < 768 ? 2 : 4);
+
       data.movies.forEach((movie, index) => {
         const timeline = movie.timeline || "Unknown";
         const imdb = movie.imdbRating || "N/A";
 
         carouselItem += `
-          <div class="col-md-3">
+          <div class="col-md-${12 / itemsPerSlide}">
             <div class="card bg-dark text-black" style="width: 100%;">
               <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
               <div class="card-img-overlay d-flex flex-column justify-content-end">
@@ -315,8 +321,8 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
           </div>
         `;
 
-        // Start a new carousel item after every 4 movies
-        if ((index + 1) % 4 === 0) {
+        // Start a new carousel item after the specified number of movies
+        if ((index + 1) % itemsPerSlide === 0) {
           carouselItem += `</div></div>`; // Close row and item
           carouselInner.insertAdjacentHTML('beforeend', carouselItem);
           carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
@@ -355,12 +361,14 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
       carouselInner.innerHTML = '';
 
       let carouselItem = `<div class="carousel-item active"><div class="row">`;
+      const itemsPerSlide = window.innerWidth < 576 ? 1 : (window.innerWidth < 768 ? 2 : 4);
+
       data.movies.forEach((movie, index) => {
         const timeline = movie.timeline || "Unknown";
         const imdb = movie.imdbRating || "N/A";
 
         carouselItem += `
-          <div class="col-md-3">
+          <div class="col-md-${12 / itemsPerSlide}">
             <div class="card bg-dark text-black" style="width: 100%;">
               <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
               <div class="card-img-overlay d-flex flex-column justify-content-end">
@@ -380,19 +388,13 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
           </div>
         `;
 
-        // Start a new carousel item after every 4 movies
-        if ((index + 1) % 4 === 0) {
+        // Start a new carousel item after the specified number of movies
+        if ((index + 1) % itemsPerSlide === 0) {
           carouselItem += `</div></div>`; // Close row and item
           carouselInner.insertAdjacentHTML('beforeend', carouselItem);
           carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
         }
       });
-
-      // Add remaining movies if any
-      if (carouselItem !== `<div class="carousel-item"><div class="row">`) {
-        carouselItem += `</div></div>`;
-        carouselInner.insertAdjacentHTML('beforeend', carouselItem);
-      }
 
       // Add event listeners to the "View Details" buttons
       document.querySelectorAll('.view-details-btn').forEach(button => {
@@ -420,12 +422,14 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
       carouselInner.innerHTML = '';
 
       let carouselItem = `<div class="carousel-item active"><div class="row">`;
+      const itemsPerSlide = window.innerWidth < 576 ? 1 : (window.innerWidth < 768 ? 2 : 4);
+
       data.movies.forEach((movie, index) => {
         const timeline = movie.timeline || "Unknown";
         const imdb = movie.imdbRating || "N/A";
 
         carouselItem += `
-          <div class="col-md-3">
+          <div class="col-md-${12 / itemsPerSlide}">
             <div class="card bg-dark text-black" style="width: 100%;">
               <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
               <div class="card-img-overlay d-flex flex-column justify-content-end">
@@ -445,8 +449,8 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
           </div>
         `;
 
-        // Start a new carousel item after every 4 movies
-        if ((index + 1) % 4 === 0) {
+        // Start a new carousel item after the specified number of movies
+        if ((index + 1) % itemsPerSlide === 0) {
           carouselItem += `</div></div>`; // Close row and item
           carouselInner.insertAdjacentHTML('beforeend', carouselItem);
           carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
@@ -485,12 +489,14 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
       carouselInner.innerHTML = '';
 
       let carouselItem = `<div class="carousel-item active"><div class="row">`;
+      const itemsPerSlide = window.innerWidth < 576 ? 1 : (window.innerWidth < 768 ? 2 : 4);
+
       data.movies.forEach((movie, index) => {
         const timeline = movie.timeline || "Unknown";
         const imdb = movie.imdbRating || "N/A";
 
         carouselItem += `
-          <div class="col-md-3">
+          <div class="col-md-${12 / itemsPerSlide}">
             <div class="card bg-dark text-black" style="width: 100%;">
               <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
               <div class="card-img-overlay d-flex flex-column justify-content-end">
@@ -510,8 +516,8 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
           </div>
         `;
 
-        // Start a new carousel item after every 4 movies
-        if ((index + 1) % 4 === 0) {
+        // Start a new carousel item after the specified number of movies
+        if ((index + 1) % itemsPerSlide === 0) {
           carouselItem += `</div></div>`; // Close row and item
           carouselInner.insertAdjacentHTML('beforeend', carouselItem);
           carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
@@ -544,71 +550,77 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-g
 
 
 //Library Fetch
-fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
-  .then(res => res.json())
-  .then(data => {
-    if (data && data.movies) {
-      const carouselInner = document.querySelector('#continueLibrary .carousel-inner');
-      carouselInner.innerHTML = '';
+document.addEventListener('DOMContentLoaded', function() {
+  fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/get-by-genre?genre=action", requestOptions)
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return res.json();
+    })
+    .then(data => {
+      console.log(data); // Check the structure of the returned data
+      if (data && data.movies) {
+        const carouselInner = document.querySelector('#continueLibrary .carousel-inner');
+        carouselInner.innerHTML = '';
 
-      let carouselItem = `<div class="carousel-item active"><div class="row">`;
-      data.movies.forEach((movie, index) => {
-        const timeline = movie.timeline || "Unknown";
-        const imdb = movie.imdbRating || "N/A";
-        
-       const progressPercentage = Math.floor(Math.random() * 101);
+        let carouselItem = `<div class="carousel-item active"><div class="row">`;
+        data.movies.forEach((movie, index) => {
+          const timeline = movie.timeline || "Unknown";
+          const imdb = movie.imdbRating || "N/A";
+          const progressPercentage = Math.floor(Math.random() * 101);
 
-        carouselItem += `
-          <div class="col-md-3">
-            <div class="card bg-dark text-black" style="width: 100%;">
-              <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
-              <div class="card-img-overlay d-flex flex-column justify-content-end">
-                <div class="text-overlay">
-                  <h5 class="card-title">${movie.title}</h5>
-                  <p class="card-text">${movie.year} / ${timeline}</p>
-                  <p class="card-text">
-                    IMDB: ${imdb} 
-                  </p>
-                  <div class="progress" style="height: 8px; margin-top: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: ${progressPercentage}%; background-color: #6100c2;" aria-valuenow="${progressPercentage}" aria-valuemin="0" aria-valuemax="100"></div>
+          carouselItem += `
+            <div class="col-md-3">
+              <div class="card bg-dark text-black" style="width: 100%;">
+                <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
+                <div class="card-img-overlay d-flex flex-column justify-content-end">
+                  <div class="text-overlay">
+                    <h5 class="card-title">${movie.title}</h5>
+                    <p class="card-text">${movie.year} / ${timeline}</p>
+                    <p class="card-text">IMDB: ${imdb}</p>
+                    <div class="progress" style="height: 8px; margin-top: 5px;">
+                      <div class="progress-bar" role="progressbar" style="width: ${progressPercentage}%; background-color: #6100c2;" aria-valuenow="${progressPercentage}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        `;
+          `;
 
-        // Start a new carousel item after every 4 movies
-        if ((index + 1) % 4 === 0) {
-          carouselItem += `</div></div>`; // Close row and item
-          carouselInner.insertAdjacentHTML('beforeend', carouselItem);
-          carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
-        }
-      });
-
-      // Add remaining movies if any
-      if (carouselItem !== `<div class="carousel-item"><div class="row">`) {
-        carouselItem += `</div></div>`;
-        carouselInner.insertAdjacentHTML('beforeend', carouselItem);
-      }
-
-      // Add event listeners to the "View Details" buttons
-      document.querySelectorAll('.view-details-btn').forEach(button => {
-        button.addEventListener('click', function () {
-          const movie = JSON.parse(this.getAttribute('data-movie'));
-
-          // Save movie data to localStorage
-          localStorage.setItem('selectedMovie', JSON.stringify(movie));
-
-          // Redirect to the individual movie page
-          window.location.href = "../Pages/singlepage.html";
+          // Start a new carousel item after every 4 movies
+          if ((index + 1) % 4 === 0) {
+            carouselItem += `</div></div>`; // Close row and item
+            carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+            carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
+          }
         });
-      });
-    } else {
-      console.error("API response does not contain an array of movies.");
-    }
-  })
-  .catch(error => console.error(error));
+
+        // Add remaining movies if any
+        if (carouselItem !== `<div class="carousel-item"><div class="row">`) {
+          carouselItem += `</div></div>`;
+          carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+        }
+
+        // Add event listeners to the "View Details" buttons
+        document.querySelectorAll('.view-details-btn').forEach(button => {
+          button.addEventListener('click', function () {
+            const movie = JSON.parse(this.getAttribute('data-movie'));
+
+            // Save movie data to localStorage
+            localStorage.setItem('selectedMovie', JSON.stringify(movie));
+
+            // Redirect to the individual movie page
+            window.location.href = "../Pages/singlepage.html";
+          });
+        });
+      } else {
+        console.error("API response does not contain an array of movies.");
+      }
+    })
+    .catch(error => console.error(error));
+});
+
 
 //Single page functionality
 document.addEventListener("DOMContentLoaded", function () {
@@ -632,7 +644,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-//Filter Buttons\
+//Filter Buttons
 function toggleDropdown() {
   document.getElementById("myDropdown").classList.toggle("show");
 }

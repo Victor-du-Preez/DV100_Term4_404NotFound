@@ -283,6 +283,7 @@ button {
 
 .carousel-item {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .carousel-inner {
@@ -399,6 +400,7 @@ a {
   width: 52px;
 }
 
+/*Single page*/
 .movie-details {
   display: flex;
   align-items: center;
@@ -431,6 +433,15 @@ a {
   text-decoration: none;
 }
 
+/*filter*/
+.filter-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; 
+  margin-top: 2rem;
+  flex-wrap: wrap; 
+}
+
 .dropdown {
   position: relative;
   margin-top: 2rem;
@@ -438,29 +449,30 @@ a {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  flex: 1; 
+  min-width: 200px; 
 }
 
-/* Button Styling */
 .dropbtn {
   background-color: #b57eff;
   color: white;
-  padding: 15px 30px;
-  font-size: 24px;
+  padding: 15px 30px; 
+  font-size: 24px; 
   border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 50%; 
 }
 
 .dropbtn:hover {
-  background-color: #8a5ed1;
+  background-color: #8a5ed1; 
 }
 
-/* Dropdown Content */
 .dropdown-content {
   display: none;
-  position: absolute; /* Change from static to absolute or fixed */
-  top: 100%; /* This keeps it below the dropdown button */
+  position: absolute; 
+  top: 100%; 
   margin-top: 10px;
   background-color: #333;
   min-width: 250px;
@@ -470,48 +482,37 @@ a {
   text-align: center;
 }
 
-
 .dropdown-content a {
   color: white;
-  padding: 15px;
-  font-size: 18px;
+  padding: 15px; 
+  font-size: 18px; 
   text-decoration: none;
   display: block;
   transition: background-color 0.3s ease;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #444; 
 }
 
 .dropdown-content a:hover {
-  background-color: #555;
+  background-color: #555; 
 }
 
-/* Dropdown Search Bar */
-.dropdown-content input[type="text"] {
-  padding: 10px;
-  width: 90%;
-  margin: 10px auto;
-  display: block;
-  background-color: #444;
-  border: none;
-  color: white;
-  font-size: 18px;
-  border-radius: 5px;
-}
-
-.dropdown-content input[type="text"]:focus {
-  outline: none;
-  background-color: #555;
-}
-
-/* Show Dropdown on Click */
 .show {
-  display: block;
+  display: block; 
 }
 
-/* Flex container to align dropdowns side-by-side */
-.filter-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* Adjust the spacing between dropdowns as desired */
-  margin-top: 2rem;
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .dropdown {
+    width: 50%; 
+    max-width: 300px; 
+  }
+
+  .dropdown-content {
+    min-width: 100%; 
+  }
 }
+
