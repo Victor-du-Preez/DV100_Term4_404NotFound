@@ -53,32 +53,16 @@
             </div>
         </div>
 
-        <div class="container my-4 text-white">
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="genreFilter">Filter by Genre:</label>
-                    <select id="genreFilter" class="form-control">
-                        <option value="">All</option>
-                        <option value="action">Action</option>
-                        <option value="romance">Romance</option>
-                        <option value="family">Family</option>
-                        <option value="horror">Horror</option>
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label for="ratingFilter">Filter by IMDb Rating:</label>
-                    <select id="ratingFilter" class="form-control">
-                        <option value="">All Ratings</option>
-                        <option value="9">9+</option>
-                        <option value="8">8+</option>
-                        <option value="7">7+</option>
-                        <option value="6">6+</option>
-                        <option value="5">5+</option>
-                    </select>
-                </div>
+        <div class="dropdown">
+            <button onclick="toggleDropdown()" class="dropbtn">Select Genre</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#" onclick="filterGenre('')">Show All</a>
+              <a href="#" onclick="filterGenre('Action')">Action</a>
+              <a href="#" onclick="filterGenre('Romance')">Romance</a>
+              <a href="#" onclick="filterGenre('Family')">Family</a>
+              <a href="#" onclick="filterGenre('Horror')">Horror</a>
             </div>
-        </div>
-
+          </div>          
 
         <h3 class="text-white pl-5">Action</h3>
 
@@ -121,6 +105,21 @@
                 <span class="sr-only">Previous</span>
             </a>
             <a class="carousel-control-next" href="#fanmilyCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <h3 class="text-white px-5">Horror</h3>
+        <div id="horrorCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+            <div class="carousel-inner">
+                <!-- Carousel items will be injected here -->
+            </div>
+            <a class="carousel-control-prev" href="#horrorCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#horrorCarousel" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
