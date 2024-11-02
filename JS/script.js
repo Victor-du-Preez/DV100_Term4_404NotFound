@@ -565,7 +565,10 @@ document.addEventListener('DOMContentLoaded', function() {
         carouselInner.innerHTML = '';
 
         let carouselItem = `<div class="carousel-item active"><div class="row">`;
-        data.movies.forEach((movie, index) => {
+        // Limit to a maximum of 7 movies
+        const maxMovies = Math.min(data.movies.length, 7);
+        for (let index = 0; index < maxMovies; index++) {
+          const movie = data.movies[index];
           const timeline = movie.timeline || "Unknown";
           const imdb = movie.imdbRating || "N/A";
           const progressPercentage = Math.floor(Math.random() * 101);
@@ -589,14 +592,14 @@ document.addEventListener('DOMContentLoaded', function() {
           `;
 
           // Start a new carousel item after every 4 movies
-          if ((index + 1) % 4 === 0) {
+          if ((index + 1) % 4 === 0 && index < maxMovies - 1) {
             carouselItem += `</div></div>`; // Close row and item
             carouselInner.insertAdjacentHTML('beforeend', carouselItem);
             carouselItem = `<div class="carousel-item"><div class="row">`; // Start new item
           }
-        });
+        }
 
-        // Add remaining movies if any
+        // Close the last item if it contains any movies
         if (carouselItem !== `<div class="carousel-item"><div class="row">`) {
           carouselItem += `</div></div>`;
           carouselInner.insertAdjacentHTML('beforeend', carouselItem);
