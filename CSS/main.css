@@ -15,6 +15,26 @@ h4 {
   font-family: "Merriweather", serif !important;
 }
 
+body {
+	background: linear-gradient(-45deg, #756CBF, #191725, #4A3D6A, #A08FC6, #3C4C6A, #8C9DCC);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100%;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
 a {
   font-family: "Montserrat", sans-serif !important;
   text-decoration: none !important;
