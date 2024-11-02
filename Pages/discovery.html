@@ -56,15 +56,15 @@
         <div class="dropdown">
             <button onclick="toggleDropdown()" class="dropbtn">Select Genre</button>
             <div id="myDropdown" class="dropdown-content">
-              <a href="#" onclick="filterGenre('')">Show All</a>
-              <a href="#" onclick="filterGenre('Action')">Action</a>
-              <a href="#" onclick="filterGenre('Romance')">Romance</a>
-              <a href="#" onclick="filterGenre('Family')">Family</a>
-              <a href="#" onclick="filterGenre('Horror')">Horror</a>
+                <a href="#" onclick="scrollToGenre('actionCarousel')">Action</a>
+                <a href="#" onclick="scrollToGenre('romanceCarousel')">Romance</a>
+                <a href="#" onclick="scrollToGenre('familyCarousel')">Family</a>
+                <a href="#" onclick="scrollToGenre('horrorCarousel')">Horror</a>
             </div>
-          </div>          
+        </div>
+            
 
-        <h3 class="text-white pl-5">Action</h3>
+        <h3 id="action" class="text-white pl-5">Action</h3>
 
         <div id="actionCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
             <div class="carousel-inner">
@@ -80,7 +80,7 @@
             </a>
         </div>
 
-        <h3 class="text-white px-5">Romance</h3>
+        <h3 id="romance" class="text-white px-5">Romance</h3>
         <div id="romanceCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
             <div class="carousel-inner">
                 <!-- Carousel items will be injected here -->
@@ -95,8 +95,8 @@
             </a>
         </div>
 
-        <h3 class="text-white px-5">Family</h3>
-        <div id="fanmilyCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+        <h3 id="family" class="text-white px-5">Family</h3>
+        <div id="familyCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
             <div class="carousel-inner">
                 <!-- Carousel items will be injected here -->
             </div>
@@ -110,7 +110,7 @@
             </a>
         </div>
 
-        <h3 class="text-white px-5">Horror</h3>
+        <h3 id="horrorCarousel" class="text-white px-5">Horror</h3>
         <div id="horrorCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
             <div class="carousel-inner">
                 <!-- Carousel items will be injected here -->

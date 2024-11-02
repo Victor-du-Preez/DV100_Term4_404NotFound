@@ -630,3 +630,30 @@ document.addEventListener("DOMContentLoaded", function () {
     console.error("No movie data found in localStorage");
   }
 });
+
+function toggleDropdown() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function filterFunction() {
+  let input = document.getElementById("myInput");
+  let filter = input.value.toUpperCase();
+  let a = document.getElementById("myDropdown").getElementsByTagName("a");
+  for (let i = 0; i < a.length; i++) {
+      let txtValue = a[i].textContent || a[i].innerText;
+      a[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+  }
+}
+
+function scrollToGenre(carouselId) {
+  const element = document.getElementById(carouselId);
+  
+  if (element) {
+      // Calculate the top position relative to the entire document
+      const topPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: topPosition, behavior: "smooth" });
+  } else {
+      console.log(`Element with ID ${carouselId} not found`);
+  }
+}
+
