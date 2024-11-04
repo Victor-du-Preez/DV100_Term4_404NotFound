@@ -1,22 +1,23 @@
-// Look at console
+// JQuery login and signup
 $(document).ready(function () {
-  var loginUsername;
-  var loginPassword;
-  var account = [loginUsername, loginPassword];
-
   $('#login-button').on('click', function () {
     var loginUsernameEntry = $("#login-username").val();
     var loginPasswordEntry = $("#login-password").val();
-    if (loginUsernameEntry == account[0] && loginPasswordEntry == account[1]) {
-      console.log("Current Username " + account[0]);
-      console.log("Current Password " + account[1]);
+
+    // Retrieve stored account details from localStorage
+    var storedUsername = localStorage.getItem("username");
+    var storedPassword = localStorage.getItem("password");
+
+    if (loginUsernameEntry === storedUsername && loginPasswordEntry === storedPassword) {
+      console.log("Current Username: " + storedUsername);
+      console.log("Current Password: " + storedPassword);
       console.log("Logged In");
       window.location.href = "../Pages/home.html";
     } else {
-      console.log("Attempted Username " + loginUsernameEntry);
-      console.log("Attempted Password " + loginPasswordEntry);
-      console.log("Login Falied");
-    };
+      console.log("Attempted Username: " + loginUsernameEntry);
+      console.log("Attempted Password: " + loginPasswordEntry);
+      console.log("Login Failed");
+    }
   });
 
   $('#create-button').on('click', function () {
@@ -32,50 +33,44 @@ $(document).ready(function () {
     var validate = /^\s*[a-zA-Z0-9,\s]+\s*$/;
     var validateEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    if (!validate.test(createUsernameEntry) || (createUsernameEntry).length == 0) {
-      $(createUsernameObject).addClass("error")
-      $(createUsernameObject).val("No special characters or spaces.")
+    if (!validate.test(createUsernameEntry) || createUsernameEntry.length === 0) {
+      $(createUsernameObject).addClass("error").val("No special characters or spaces.");
     } else {
       createUsernameValid = true;
-      var createUsername = $(createUsernameObject).val();
     }
 
-    if (!validate.test(createPasswordEntry) || (createPasswordEntry).length == 0) {
-      $(createPasswordObject).addClass("error");
-      $(createPasswordObject).val("No special characters or spaces.");
+    if (!validate.test(createPasswordEntry) || createPasswordEntry.length === 0) {
+      $(createPasswordObject).addClass("error").val("No special characters or spaces.");
     } else {
       createPasswordValid = true;
-      var createPassword = $(createPasswordObject).val();
     }
 
     if (!validateEmail.test(createEmailEntry)) {
-      $(createEmailObject).addClass("error");
-      $(createEmailObject).val("Enter a valid email");
+      $(createEmailObject).addClass("error").val("Enter a valid email");
     } else {
       createEmailValid = true;
-      console.log("Account Email " + createEmailObject.val())
+      console.log("Account Email: " + createEmailObject.val());
     }
 
+    // Clear error message on focus
     $(createUsernameObject).on('click', function () {
-      $(this).val("");
-      $(this).removeClass("error");
+      $(this).val("").removeClass("error");
     });
-
     $(createPasswordObject).on('click', function () {
-      $(this).val("");
-      $(this).removeClass("error");
+      $(this).val("").removeClass("error");
     });
-
     $(createEmailObject).on('click', function () {
-      $(this).val("");
-      $(this).removeClass("error");
+      $(this).val("").removeClass("error");
     });
 
-    account = [createUsername, createPassword];
-    console.log("Account Username " + account[0]);
-    console.log("Account Password " + account[1]);
+    // Save to localStorage if valid
+    if (createUsernameValid && createPasswordValid && createEmailValid) {
+      localStorage.setItem("username", createUsernameEntry);
+      localStorage.setItem("password", createPasswordEntry);
+      localStorage.setItem("email", createEmailEntry);
+      console.log("Account Username: " + createUsernameEntry);
+      console.log("Account Password: " + createPasswordEntry);
 
-    if (createUsernameValid == true && createPasswordValid == true && createEmailValid == true) {
       $('form').animate({
         height: "toggle",
         opacity: "toggle"
@@ -486,3 +481,54 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
     let myData = JSON.parse(_data);
     console.log(myData);
   }
+
+  fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-popular-movies", requestOptions)
+  .then(response => response.json())
+  .then(data => {
+    if (data && data.movies) {
+      // Call the function to populate the carousel with a random 5 movies
+      populateCarousel(data.movies);
+    } else {
+      console.error("API response does not contain movie data.");
+    }
+  })
+  .catch(error => console.error("Error fetching data:", error));
+  
+  function populateCarousel(movies) {
+    const carouselInner = document.querySelector('#mainCarousel .carousel-inner');
+    const carouselIndicators = document.querySelector('#mainCarousel .carousel-indicators');
+    
+    // Clear any existing slides and indicators
+    carouselInner.innerHTML = '';
+    carouselIndicators.innerHTML = '';
+  
+    // Randomize the movies array and take only the first 5 movies
+    const selectedMovies = movies.sort(() => 0.5 - Math.random()).slice(0, 5);
+  
+    selectedMovies.forEach((movie, index) => {
+      // Create a new carousel item
+      const carouselItem = document.createElement('div');
+      carouselItem.classList.add('carousel-item');
+      if (index === 0) carouselItem.classList.add('active'); // Make the first item active
+  
+      // Create the image element
+      const img = document.createElement('img');
+      img.src = movie.image || 'default-image.jpg'; // Fallback in case image is missing
+      img.classList.add('d-block', 'w-100');
+      img.alt = movie.title || 'Movie Image';
+  
+      // Append the image to the carousel item
+      carouselItem.appendChild(img);
+      carouselInner.appendChild(carouselItem);
+  
+      // Create a new indicator for each slide
+      const indicator = document.createElement('button');
+      indicator.type = "button";
+      indicator.setAttribute('data-bs-target', '#mainCarousel');
+      indicator.setAttribute('data-bs-slide-to', index);
+      if (index === 0) indicator.classList.add('active'); // Set first indicator active
+      carouselIndicators.appendChild(indicator);
+    });
+  }
+  
+

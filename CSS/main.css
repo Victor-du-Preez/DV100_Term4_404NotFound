@@ -36,19 +36,15 @@ button {
 /*Signup CSS*/
 
 .form-control {
-  background-color: #f1c3f2 !important;
+  background-color: #f1c3f2 
   height: 66px;
-  border: none !important;
+  border: none 
 }
 
 .login-page {
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
-}
-
-.message a{
-  color: #000000;
 }
 
 /*Signup CSS*/
@@ -59,44 +55,54 @@ button {
   position: relative;
   z-index: 1;
   background: #191725;
-  max-width: 360px;
+  max-width: 580px;
   margin: 0 auto 100px;
-  padding: 45px;
+  padding: 20px;
   text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 .form h1{
   color: White;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 20px;
 }
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
-  background: #f2f2f2;
+  background: #F1C3F2;
   width: 100%;
   border: 0;
   margin: 0 0 15px;
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
+  border-radius: 16px;
 }
 .form button {
   font-family: "Roboto", sans-serif;
+  font-weight: bold;
   text-transform: uppercase;
   outline: 0;
-  background: #FF6229;
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
+  background-image: linear-gradient(to right, #B57EFF , #F1C3F2 );
+  width: 80px;
+  height: 40px;
+  border-radius: 14px;
+  font-size: 12px;
+  color: #000000;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
 }
-.form button:hover,.form button:active,.form button:focus {
-  background: #FF5415;
+.form button:hover{
+  background-image: linear-gradient(to right, #a05ef5 , #f5aaf7 );
 }
+
+.form button:active{
+  background-image: linear-gradient(to right, #7444b3 , #af7cb1 );
+}
+
 .form .message {
   margin: 15px 0 0;
   color: #b3b3b3;
@@ -108,6 +114,7 @@ button {
 }
 .form .login-form {
   display: none;
+  width: 100%;
 }
 .container {
   position: relative;
@@ -173,7 +180,7 @@ button {
 }
 
 .form-text {
-  color: orangered;
+  background-image: linear-gradient(to right, #B57EFF , #F1C3F2 );
   font-size: 9px;
 }
 
@@ -226,29 +233,9 @@ button {
   justify-content: space-around;
 }
 
-.heroCardBtn {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.heroCard {
-  width: 997px;
-  height: 561px;
-  background-color: #efc4f2;
-  background-size: cover;
-  background-position: center;
-  border-radius: 20px;
-}
-
-.heroCardbody {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding-bottom: 40px;
-  padding-left: 40px;
-  background: linear-gradient(to top, #000000, #19172500);
-  border-radius: 20px;
+.carousel-control-prev{
+  height: 50px;
+  top: 48% !important;
 }
 
 .smallCard {
@@ -271,7 +258,7 @@ button {
 
 .carousel-inner {
   display: flex;
-  padding: 36px 24px;
+  padding: 50px;
   justify-content: space-between;
 }
 
@@ -393,4 +380,9 @@ a {
 
 .movie-details h1, .movie-details h2, .movie-details p {
   margin: 10px 0;
+}
+
+
+.carousel-item{
+  object-fit: cover;
 }
