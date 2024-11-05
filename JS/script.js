@@ -86,6 +86,7 @@ $(document).ready(function () {
   });
 });
 
+
 const myHeaders = new Headers();
 myHeaders.append("x-apihub-key", "ofbel0RCR9Uegh1-HAIw2QnrVPK84F0OHlPK7QxGdyM5C1jmCR");
 myHeaders.append("x-apihub-host", "Movies-Verse.allthingsdev.co");
@@ -118,15 +119,23 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/most-pop
               <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
               <div class="card-img-overlay d-flex flex-column justify-content-end">
                 <div class="text-overlay">
+                <div class="cardText">
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
                   <p class="card-text">
                     IMDB: ${imdb} 
+                    </div>
+                    <div class="cardButtons">
+                      <button class="btn watchlist-btn btn-primary font-weight-lighter border-0 mr-3" 
+                      style="background-color: #6100c2; display: block; float: right;" 
+                      data-movie='${JSON.stringify(movie)}'> Add to Watchlist
+                    </button>  
                     <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" 
                       style="background-color: #6100c2; display: block; float: right;" 
                       data-movie='${JSON.stringify(movie)}'>View Details
                     </button>
                   </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -230,15 +239,23 @@ fetch("https://Movies-Verse.proxy-production.allthingsdev.co/api/movies/top-250-
               <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
               <div class="card-img-overlay d-flex flex-column justify-content-end">
                 <div class="text-overlay">
+                <div class="cardText">
                   <h5 class="card-title">${movie.title}</h5>
                   <p class="card-text">${movie.year} / ${timeline}</p>
                   <p class="card-text">
                     IMDB: ${imdb} 
+                    </div>
+                    <div class="cardButtons">
+                      <button class="btn watchlist-btn btn-primary font-weight-lighter border-0 mr-3" 
+                      style="background-color: #6100c2; display: block; float: right;" 
+                      data-movie='${JSON.stringify(movie)}'> Add to Watchlist
+                    </button>  
                     <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" 
                       style="background-color: #6100c2; display: block; float: right;" 
                       data-movie='${JSON.stringify(movie)}'>View Details
                     </button>
                   </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -770,3 +787,171 @@ function scrollToGenre(carouselId) {
 }
 
 fetchMovies(); // Call the function to fetch all movies initially
+
+const images = [
+    'LOTR.jpg',
+    'Ender.jpg',
+    'deadpool.jpg',
+    'Avengers.jpg',
+    'SW.jpg',
+    'Scream.jpg',
+];
+
+function getRandomImages() {
+    // Shuffle the images array
+    const shuffled = images.sort(() => 0.5 - Math.random());
+    // Select the first 3 images from the shuffled array
+    return shuffled.slice(0, 3);
+}
+
+function injectImages() {
+    const randomImages = getRandomImages();
+    // Target the specific carousel's inner container using its ID
+    const carouselInner = document.querySelector('#mainCarousel .carousel-inner');
+    
+    // Clear existing carousel items
+    carouselInner.innerHTML = '';
+
+    randomImages.forEach((image, index) => {
+        // Create a new carousel item div
+        const carouselItem = document.createElement('div');
+        carouselItem.className = 'carousel-item' + (index === 0 ? ' active' : '');
+
+        // Create the image element
+        const imgElement = document.createElement('img');
+        imgElement.src = '../Assets/Icons/Carousel/' + image;
+        imgElement.className = 'd-block w-100 img-fluid'; // Keep Bootstrap classes
+        imgElement.alt = 'Random Image ' + (index + 1);
+
+        // Append the image to the carousel item
+        carouselItem.appendChild(imgElement);
+        // Append the carousel item to the carousel inner
+        carouselInner.appendChild(carouselItem);
+    });
+}
+
+// Call the injectImages function when the window loads
+window.onload = injectImages;
+
+// Watchlist functionality
+$(document).ready(function () {
+  // Load the watchlist when the library page is loaded
+  if (document.querySelector('#watchlist')) {
+    loadWatchlist();
+  }
+
+  // Event listener for adding a movie to the watchlist
+  $(document).on('click', '.watchlist-btn', function () {
+    const movie = JSON.parse($(this).attr('data-movie'));
+    
+    // Retrieve the current watchlist from localStorage
+    let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+    
+    // Check if the movie is already in the watchlist
+    const alreadyInWatchlist = watchlist.some(item => item.title === movie.title);
+    if (!alreadyInWatchlist) {
+      watchlist.push(movie);
+      localStorage.setItem("watchlist", JSON.stringify(watchlist));
+      showAlert(`${movie.title} has been added to your watchlist!`, 'success');
+    } else {
+      showAlert(`${movie.title} is already in your watchlist.`, 'warning');
+    }
+
+    // Update the watchlist display if on library page
+    if (document.querySelector('#watchlist')) {
+      loadWatchlist();
+    }
+  });
+
+  // Handle removal from watchlist
+  $(document).on('click', '.remove-watchlist-btn', function() {
+    const movieTitle = $(this).data('movie-title');
+    let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+    
+    watchlist = watchlist.filter(movie => movie.title !== movieTitle);
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+    
+    loadWatchlist();
+    showAlert('Movie removed from watchlist', 'success');
+  });
+});
+
+function loadWatchlist() {
+  const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+  const watchlistContainer = $('#watchlist .carousel-inner');
+  if (!watchlistContainer.length) return;
+  
+  watchlistContainer.empty();
+
+  if (watchlist.length === 0) {
+    watchlistContainer.append('<div class="carousel-item active"><div class="text-white">Your watchlist is empty.</div></div>');
+    return;
+  }
+
+  let carouselItem = `<div class="carousel-item active"><div class="row">`;
+  const itemsPerSlide = window.innerWidth < 576 ? 1 : (window.innerWidth < 768 ? 2 : 4);
+
+  watchlist.forEach((movie, index) => {
+    carouselItem += `
+      <div class="col-md-${12 / itemsPerSlide}">
+        <div class="card bg-dark text-black" style="width: 100%;">
+          <img src="${movie.image}" class="card-img" style="height: 600px; object-fit: cover;" alt="${movie.title}">
+          <div class="card-img-overlay d-flex flex-column justify-content-end">
+            <div class="text-overlay">
+              <div class="cardText">
+                <h5 class="card-title">${movie.title}</h5>
+                <p class="card-text">${movie.year} / ${movie.timeline || "Unknown"}</p>
+                <p class="card-text">IMDB: ${movie.imdbRating || "N/A"}</p>
+              </div>
+              <div class="cardButtons">
+                <button class="btn view-details-btn btn-primary font-weight-lighter border-0 mr-3" 
+                  style="background-color: #6100c2; display: block; float: right;" 
+                  data-movie='${JSON.stringify(movie)}'>View Details
+                </button>
+                <button class="btn remove-watchlist-btn btn-danger font-weight-lighter border-0 mr-3" 
+                  style="background-color: #d9534f; display: block; float: right;" 
+                  data-movie-title="${movie.title}">Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    if ((index + 1) % itemsPerSlide === 0) {
+      carouselItem += `</div></div>`;
+      watchlistContainer.append(carouselItem);
+      carouselItem = `<div class="carousel-item"><div class="row">`;
+    }
+  });
+
+  if (carouselItem !== `<div class="carousel-item"><div class="row">`) {
+    carouselItem += `</div></div>`;
+    watchlistContainer.append(carouselItem);
+  }
+}
+
+function showAlert(message, type) {
+  const alertDiv = $('<div>')
+    .addClass(`alert alert-${type} alert-dismissible fade show`)
+    .attr('role', 'alert')
+    .css({
+      'position': 'fixed',
+      'top': '20px',
+      'right': '20px',
+      'z-index': '1050'
+    })
+    .html(`
+      ${message}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    `);
+  
+  $('body').append(alertDiv);
+  
+  setTimeout(() => {
+    alertDiv.alert('close');
+  }, 3000);
+}
